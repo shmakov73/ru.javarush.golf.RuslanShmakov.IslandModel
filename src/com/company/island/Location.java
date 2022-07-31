@@ -12,65 +12,64 @@ public class Location {
     // Списки где будут хранитсья находящиеся на локации сущности
     List<Herbivore> herbivores = new ArrayList<>();
     List<Predator> predators = new ArrayList<>();
+    List<Animal> animals = new ArrayList<>();
     //List<Plant> plants = new ArrayList<>();
 
-    public void addHerbivoresToList(){
+    public void addHerbivoresToList(int x, int y, int xLength, int yLength){
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Boar.maxCount); i++) {
-            herbivores.add(new Boar());
+            herbivores.add(new Boar(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Buffalo.maxCount); i++) {
-            herbivores.add(new Buffalo());
+            herbivores.add(new Buffalo(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Caterpillar.maxCount); i++) {
-            herbivores.add(new Caterpillar());
+            herbivores.add(new Caterpillar(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Deer.maxCount); i++) {
-            herbivores.add(new Deer());
+            herbivores.add(new Deer(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Duck.maxCount); i++) {
-            herbivores.add(new Duck());
+            herbivores.add(new Duck(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Goat.maxCount); i++) {
-            herbivores.add(new Goat());
+            herbivores.add(new Goat(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Horse.maxCount); i++) {
-            herbivores.add(new Horse());
+            herbivores.add(new Horse(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Mouse.maxCount); i++) {
-            herbivores.add(new Mouse());
+            herbivores.add(new Mouse(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Rabbit.maxCount); i++) {
-            herbivores.add(new Rabbit());
+            herbivores.add(new Rabbit(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Sheep.maxCount); i++) {
-            herbivores.add(new Sheep());
+            herbivores.add(new Sheep(x, y, xLength, yLength));
         }
     }
 
-    public void addPredatorsToList(){
+    public void addPredatorsToList(int x, int y, int xLength, int yLength){
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Anaconda.maxCount); i++) {
-            predators.add(new Anaconda());
+            predators.add(new Anaconda(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Bear.maxCount); i++) {
-            predators.add(new Bear());
+            predators.add(new Bear(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Eagle.maxCount); i++) {
-            predators.add(new Eagle());
+            predators.add(new Eagle(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Fox.maxCount); i++) {
-            predators.add(new Fox());
+            predators.add(new Fox(x, y, xLength, yLength));
         }
         for (int i = 0; i < ThreadLocalRandom.current().nextInt(Wolf.maxCount); i++) {
-            predators.add(new Wolf());
+            predators.add(new Wolf(x, y, xLength, yLength));
         }
     }
 
-//    public void addAnimalType(int maxCount){
-//        int count = ThreadLocalRandom.current().nextInt(maxCount);
-//        for (int i = 0; i < count; i++) {
-//            herbivores.add(new Herbivore());
-//        }
-//    }
+    public void addAnimalsToList(){
+        animals.addAll(predators);
+        animals.addAll(herbivores);
+    }
 
 
     // ОПИСЫВАЕМ СОБЫТИЯ НА ЛОКАЦИИ
@@ -86,7 +85,7 @@ public class Location {
             predator.reproduction();
 
             // ДВИГАЕМСЯ
-            predator.move();
+            //predator.move();
         }
 
         // ТО ЖЕ САМОЕ ДЕЛАЕМ ДЛЯ ТРАВОЯДНЫХ
@@ -96,6 +95,18 @@ public class Location {
         }
 
     }
+
+    public int[] moveAnimals(){
+        int[] newCoordinates = new int[2];
+        for (Predator predator: predators) {
+            newCoordinates = predator.move();
+        }
+        for (Herbivore herbivore: herbivores) {
+            newCoordinates = herbivore.move();
+        }
+        return newCoordinates;
+    }
+
 
     @Override
     public String toString() {
