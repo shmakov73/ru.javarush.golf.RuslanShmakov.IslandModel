@@ -10,11 +10,29 @@ public class Wolf extends Predator {
     public static final int movingSpeed = 3;
     public static final double canEat = 8;
 
+    public static final int eatWolf = 0;
+    public static final int eatAnaconda = 0;
+    public static final int eatFox = 0;
+    public static final int eatBear = 0;
+    public static final int eatEagle = 0;
+    public static final int eatHorse = 10;
+    public static final int eatDeer = 15;
+    public static final int eatRabbit = 60;
+    public static final int eatMouse = 80;
+    public static final int eatGoat = 60;
+    public static final int eatSheep = 70;
+    public static final int eatBoar = 15;
+    public static final int eatBuffalo = 10;
+    public static final int eatDuck = 40;
+    public static final int eatCaterpillar = 0;
+    public static final int eatPlants = 0;
+
 
     private int xLocation;
     private int yLocation;
     private int xMax;
     private int yMax;
+
 
     public Wolf(int xLocation, int yLocation, int xMax, int yMax) {
         this.xLocation = xLocation;

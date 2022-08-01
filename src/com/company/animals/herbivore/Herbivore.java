@@ -2,8 +2,9 @@ package com.company.animals.herbivore;
 
 import com.company.animals.Animal;
 
-public abstract class Herbivore extends Animal {
+import java.util.concurrent.ThreadLocalRandom;
 
-    @Override
-    public abstract int[] move();
+public abstract class Herbivore extends Animal {
+public abstract int[] move();
+
 }

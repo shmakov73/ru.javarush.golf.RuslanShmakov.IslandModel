@@ -10,6 +10,23 @@ public class Bear extends Predator {
     public static final int movingSpeed = 2;
     public static final double canEat = 80;
 
+    public static final int eatWolf = 0;
+    public static final int eatAnaconda = 80;
+    public static final int eatFox = 0;
+    public static final int eatBear = 0;
+    public static final int eatEagle = 0;
+    public static final int eatHorse = 40;
+    public static final int eatDeer = 80;
+    public static final int eatRabbit = 80;
+    public static final int eatMouse = 90;
+    public static final int eatGoat = 70;
+    public static final int eatSheep = 70;
+    public static final int eatBoar = 50;
+    public static final int eatBuffalo = 20;
+    public static final int eatDuck = 10;
+    public static final int eatCaterpillar = 0;
+    public static final int eatPlants = 0;
+
     private int xLocation;
     private int yLocation;
     private int xMax;

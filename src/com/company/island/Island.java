@@ -20,24 +20,24 @@ public class Island {
     }
 
     public void print(){
-        int boar = 0;
-        int buffalo = 0;
-        int caterpillar = 0;
-        int deer = 0;
-        int duck = 0;
-        int goat = 0;
-        int horse = 0;
-        int mouse = 0;
-        int rabbit = 0;
-        int sheep = 0;
-        int anaconda = 0;
-        int bear = 0;
-        int eagle = 0;
-        int fox = 0;
-        int wolf = 0;
+
         for (int i = 0; i < locations.length; i++) {
             for (int j = 0; j < locations[i].length; j++) {
-                //System.out.print(locations[i][j].herbivores.size() + "||");
+                int boar = 0;
+                int buffalo = 0;
+                int caterpillar = 0;
+                int deer = 0;
+                int duck = 0;
+                int goat = 0;
+                int horse = 0;
+                int mouse = 0;
+                int rabbit = 0;
+                int sheep = 0;
+                int anaconda = 0;
+                int bear = 0;
+                int eagle = 0;
+                int fox = 0;
+                int wolf = 0;
                 for (int k = 0; k < locations[i][j].herbivores.size(); k++) {
                     if (locations[i][j].herbivores.get(k) instanceof Boar) boar++;
                     if (locations[i][j].herbivores.get(k) instanceof Buffalo) buffalo++;

@@ -96,17 +96,6 @@ public class Location {
 
     }
 
-    public int[] moveAnimals(){
-        int[] newCoordinates = new int[2];
-        for (Predator predator: predators) {
-            newCoordinates = predator.move();
-        }
-        for (Herbivore herbivore: herbivores) {
-            newCoordinates = herbivore.move();
-        }
-        return newCoordinates;
-    }
-
 
     @Override
     public String toString() {

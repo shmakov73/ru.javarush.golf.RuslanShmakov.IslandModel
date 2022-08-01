@@ -11,6 +11,23 @@ public class Deer extends Herbivore{
     public static final int movingSpeed = 4;
     public static final double canEat = 50;
 
+    public static final int eatWolf = 0;
+    public static final int eatAnaconda = 0;
+    public static final int eatFox = 0;
+    public static final int eatBear = 0;
+    public static final int eatEagle = 0;
+    public static final int eatHorse = 0;
+    public static final int eatDeer = 0;
+    public static final int eatRabbit = 0;
+    public static final int eatMouse = 0;
+    public static final int eatGoat = 0;
+    public static final int eatSheep = 0;
+    public static final int eatBoar = 0;
+    public static final int eatBuffalo = 0;
+    public static final int eatDuck = 0;
+    public static final int eatCaterpillar = 0;
+    public static final int eatPlants = 100;
+
     private int xLocation;
     private int yLocation;
     private int xMax;
