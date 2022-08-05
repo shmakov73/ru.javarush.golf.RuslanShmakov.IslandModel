@@ -8,13 +8,20 @@ public class Runner {
     public static void main(String[] args) throws InterruptedException {
 
         Island island = new Island();
-        //island.print();
         island.initialize();
-        island.print();
-        island.migrate();
-        Thread.sleep(3000);
-        System.out.println("**********************************************************************************************");
-        island.print();
+
+
+        while (true){
+
+            island.print();
+            System.out.println("**********************************************************************************************");
+            island.migrate();
+            island.print();
+            System.out.println("**********************************************************************************************");
+            island.hunt();
+            island.print();
+            Thread.sleep(1000);
+        }
 
     }
 }

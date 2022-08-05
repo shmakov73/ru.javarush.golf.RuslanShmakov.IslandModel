@@ -5,6 +5,7 @@ import com.company.animals.herbivore.*;
 import com.company.animals.predator.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -12,7 +13,6 @@ public class Location {
     // Списки где будут хранитсья находящиеся на локации сущности
     List<Herbivore> herbivores = new ArrayList<>();
     List<Predator> predators = new ArrayList<>();
-    List<Animal> animals = new ArrayList<>();
     //List<Plant> plants = new ArrayList<>();
 
     int boar = 0;
@@ -82,7 +82,23 @@ public class Location {
         }
     }
 
-    public void calculate(Location location){
+    public int calculate(Location location){
+        boar = 0;
+        buffalo = 0;
+        caterpillar = 0;
+        deer = 0;
+        duck = 0;
+        goat = 0;
+        horse = 0;
+        mouse = 0;
+        rabbit = 0;
+        sheep = 0;
+        anaconda = 0;
+        bear = 0;
+        eagle = 0;
+        fox = 0;
+        wolf = 0;
+
         for (int k = 0; k < location.herbivores.size(); k++) {
             if (location.herbivores.get(k) instanceof Boar) boar++;
             if (location.herbivores.get(k) instanceof Buffalo) buffalo++;
@@ -102,24 +118,33 @@ public class Location {
             if (location.predators.get(k) instanceof Fox) fox++;
             if (location.predators.get(k) instanceof Wolf) wolf++;
         }
-        System.out.println("boar " + boar + "| |");
-        System.out.println("buffalo " + buffalo + "| |");
-        System.out.println("caterpillar " + caterpillar + "| |");
-        System.out.println("deer " + deer + "| |");
-        System.out.println("duck " + duck + "| |");
-        System.out.println("goat " + goat + "| |");
-        System.out.println("horse " + horse + "| |");
-        System.out.println("mouse " + mouse + "| |");
-        System.out.println("rabbit " + rabbit + "| |");
-        System.out.println("sheep " + sheep + "| |");
-        System.out.println("anaconda " + anaconda + "| |");
-        System.out.println("bear " + bear + "| |");
-        System.out.println("eagle " + eagle + "| |");
-        System.out.println("fox " + fox + "| |");
-        System.out.println("wolf " + wolf + "| |");
+//        System.out.println("boar " + boar + "| |");
+//        System.out.println("buffalo " + buffalo + "| |");
+//        System.out.println("caterpillar " + caterpillar + "| |");
+//        System.out.println("deer " + deer + "| |");
+//        System.out.println("duck " + duck + "| |");
+//        System.out.println("goat " + goat + "| |");
+//        System.out.println("horse " + horse + "| |");
+//        System.out.println("mouse " + mouse + "| |");
+//        System.out.println("rabbit " + rabbit + "| |");
+//        System.out.println("sheep " + sheep + "| |");
+//        System.out.println("anaconda " + anaconda + "| |");
+//        System.out.println("bear " + bear + "| |");
+//        System.out.println("eagle " + eagle + "| |");
+//        System.out.println("fox " + fox + "| |");
+//        System.out.println("wolf " + wolf + "| |");
+        //System.out.println(boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
 
-        //System.out.print(locations[i][j]);
-        System.out.println();
+        //System.out.println();
+        return (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
+    }
+    public void eating(){
+        for (Predator predator : predators) {
+            predator.eat(predator, herbivores);
+        }
+        Iterator<Herbivore> iterator = herbivores.iterator();
+            Herbivore nextHerbivore = iterator.next();
+            nextHerbivore.eat(nextHerbivore, herbivores);
     }
 
 

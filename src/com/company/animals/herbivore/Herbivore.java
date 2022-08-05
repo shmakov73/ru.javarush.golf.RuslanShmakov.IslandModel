@@ -1,7 +1,10 @@
 package com.company.animals.herbivore;
 
+import com.company.Diet;
 import com.company.animals.Animal;
+import com.company.animals.predator.Predator;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,15 +21,9 @@ public abstract class Herbivore extends Animal {
         this.yMax = yMax;
         this.movingSpeed = movingSpeed;
     }
-//public abstract int[] move();
 
 @Override
-public void eat(List<Herbivore> herbivores){
-    for (Herbivore herbivore : herbivores) {
-
-    }
-}
-    public int[] move() {
+public int[] move() {
         int[] returnCoordinates = new int[2];
         int direction = ThreadLocalRandom.current().nextInt(3);
         int newXLocation = 0;
@@ -53,7 +50,34 @@ public void eat(List<Herbivore> herbivores){
         returnCoordinates[0] = x;
         returnCoordinates[1] = y;
 
-        //System.out.println(Arrays.toString(returnCoordinates));
         return returnCoordinates;
+    }
+
+    public void die(List<Herbivore> herbivores, Herbivore herbivore){
+        herbivores.remove(herbivore);
+    }
+    public void eat(Herbivore herbivore, List<Herbivore> herbivores){
+        Diet annotation = herbivore.getClass().getAnnotation(Diet.class);
+        Iterator<Herbivore> iterator = herbivores.iterator();
+        Herbivore nextHerbivore = iterator.next();
+        if (herbivore.eatOrNot(annotation.eatBoar()) && nextHerbivore instanceof Boar) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatBuffalo()) && nextHerbivore instanceof Buffalo) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatCaterpillar()) && nextHerbivore instanceof Caterpillar) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatDeer()) && nextHerbivore instanceof Deer) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatDuck()) && nextHerbivore instanceof Duck) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatGoat()) && nextHerbivore instanceof Goat) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatHorse()) && nextHerbivore instanceof Horse) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatMouse()) && nextHerbivore instanceof Mouse) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatRabbit()) && nextHerbivore instanceof Rabbit) nextHerbivore.die(herbivores, nextHerbivore);
+        if (herbivore.eatOrNot(annotation.eatSheep()) && nextHerbivore instanceof Sheep) nextHerbivore.die(herbivores, nextHerbivore);
+
+    }
+
+    public boolean eatOrNot(int chance){
+        int random = ThreadLocalRandom.current().nextInt(101);
+        return random <= chance;
+    }
+
+    public void reproduction(List<Herbivore> herbivores){
     }
 }
