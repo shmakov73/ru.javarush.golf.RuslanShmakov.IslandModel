@@ -2,7 +2,7 @@ package com.company.animals.herbivore;
 
 import com.company.Diet;
 import com.company.animals.Animal;
-import com.company.animals.predator.Predator;
+import com.company.island.Location;
 
 import java.util.Iterator;
 import java.util.List;
@@ -56,10 +56,12 @@ public int[] move() {
     public void die(List<Herbivore> herbivores, Herbivore herbivore){
         herbivores.remove(herbivore);
     }
+
     public void eat(Herbivore herbivore, List<Herbivore> herbivores){
         Diet annotation = herbivore.getClass().getAnnotation(Diet.class);
         Iterator<Herbivore> iterator = herbivores.iterator();
         Herbivore nextHerbivore = iterator.next();
+
         if (herbivore.eatOrNot(annotation.eatBoar()) && nextHerbivore instanceof Boar) nextHerbivore.die(herbivores, nextHerbivore);
         if (herbivore.eatOrNot(annotation.eatBuffalo()) && nextHerbivore instanceof Buffalo) nextHerbivore.die(herbivores, nextHerbivore);
         if (herbivore.eatOrNot(annotation.eatCaterpillar()) && nextHerbivore instanceof Caterpillar) nextHerbivore.die(herbivores, nextHerbivore);
@@ -78,6 +80,10 @@ public int[] move() {
         return random <= chance;
     }
 
-    public void reproduction(List<Herbivore> herbivores){
+
+    public void reproduction(Location location){
+
+
     }
+
 }

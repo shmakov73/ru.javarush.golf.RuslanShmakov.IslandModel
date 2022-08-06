@@ -20,6 +20,8 @@ public class Runner {
             System.out.println("**********************************************************************************************");
             island.hunt();
             island.print();
+            island.reproduct();
+            island.print();
             Thread.sleep(1000);
         }
 

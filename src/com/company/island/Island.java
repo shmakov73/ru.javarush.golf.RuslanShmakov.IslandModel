@@ -49,11 +49,24 @@ public class Island {
             }
         }
 
+        public void checkAnimalCount(){
+
+        }
+
         public void hunt(){
             for (Location[] locationLine : locations) {
                 for (Location location : locationLine) {
                     location.eating();
                 }
+            }
+        }
+
+        public void reproduct(){
+            for (int i = 0; i < locations.length; i++) {
+                for (int j = 0; j < locations[i].length; j++) {
+                    locations[i][j].startReproduct(i, j, locations.length, locations[i].length);
+                }
+
             }
         }
 

@@ -10,5 +10,5 @@ public abstract class Animal {
     public void eat(Predator predator, List<Herbivore> herbivores){};
 
     public abstract int[] move();
-    public void reproduction(){}
+    //public abstract void reproduction(List<? super Animal> animal);
 }
