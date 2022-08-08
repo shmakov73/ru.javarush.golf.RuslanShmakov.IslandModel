@@ -1,10 +1,10 @@
 package com.company.animals.predator;
 
 import com.company.Diet;
-
+//
+//
 //Медведь
-@Diet(eatAnaconda = 80, eatHorse = 40, eatDeer = 80, eatRabbit = 80, eatMouse = 90, eatGoat = 70,
-        eatSheep = 70, eatBoar = 50, eatBuffalo = 20, eatDuck = 10)
+@Diet(eatAnaconda = 80, eatHorse = 40, eatDeer = 80, eatRabbit = 80, eatMouse = 90, eatGoat = 70, eatSheep = 70, eatBoar = 50, eatBuffalo = 20, eatDuck = 10)
 
 public class Bear extends Predator {
 

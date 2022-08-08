@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Predator extends Animal {
-    private int xLocation;
-    private int yLocation;
-    private int xMax;
-    private int yMax;
-    private int movingSpeed;
+    private final int xLocation;
+    private final int yLocation;
+    private final int xMax;
+    private final int yMax;
+    private final int movingSpeed;
 
 
     public Predator(int xLocation, int yLocation, int xMax, int yMax, int movingSpeed) {
@@ -27,8 +27,8 @@ public abstract class Predator extends Animal {
     public int[] move() {
         int[] returnCoordinates = new int[2];
         int direction = ThreadLocalRandom.current().nextInt(3);
-        int newXLocation = 0;
-        int newYLocation = 0;
+        int newXLocation;
+        int newYLocation;
 
         if (direction == 0){
             newXLocation = xLocation + movingSpeed;
@@ -38,13 +38,9 @@ public abstract class Predator extends Animal {
             newXLocation = xLocation;
             newYLocation = yLocation + movingSpeed;
         }
-        else if (direction == 2){
+        else {
             newXLocation = xLocation - movingSpeed;
             newYLocation = yLocation;
-        }
-        else if (direction == 3){
-            newXLocation = xLocation;
-            newYLocation = yLocation - movingSpeed;
         }
         int x = (newXLocation + xMax)%xMax;
         int y = (newYLocation + yMax)%yMax;
@@ -162,15 +158,15 @@ public abstract class Predator extends Animal {
         if (predator instanceof Bear){
             if (((Bear) predator).getHunger() == 0){predator.die(predators, predator);}
         }
-        else System.out.println("Bear is full");
+        else System.out.println("Bear is dead");
         if (predator instanceof Fox){
             if (((Fox) predator).getHunger() == 0){predator.die(predators, predator);}
         }
-        else System.out.println("Fox is full");
+        else System.out.println("Fox is dead");
         if (predator instanceof Wolf){
             if (((Wolf) predator).getHunger() == 0){predator.die(predators, predator);}
         }
-        else System.out.println("Wolf is full");
+        else System.out.println("Wolf is dead");
     }
 
 

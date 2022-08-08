@@ -151,53 +151,53 @@ public class Location {
     }
 
     public void startReproduct(int x, int y, int xLength, int yLength){
-        for (int i = 0; i < randomCount(boar); i++) {
+        for (int i = 0; i < randomCount(boar)/3; i++) {
             herbivores.add(new Boar(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(buffalo)/2; i++) {
+        for (int i = 0; i < randomCount(buffalo)/3; i++) {
             herbivores.add(new Buffalo(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(caterpillar)/2; i++) {
+        for (int i = 0; i < randomCount(caterpillar)/3; i++) {
             herbivores.add(new Caterpillar(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(deer)/2; i++) {
+        for (int i = 0; i < randomCount(deer)/3; i++) {
             herbivores.add(new Deer(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(duck)/2; i++) {
+        for (int i = 0; i < randomCount(duck)/3; i++) {
             herbivores.add(new Duck(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(goat)/2; i++) {
+        for (int i = 0; i < randomCount(goat)/3; i++) {
             herbivores.add(new Goat(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(horse)/2; i++) {
+        for (int i = 0; i < randomCount(horse)/3; i++) {
             herbivores.add(new Horse(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(mouse)/2; i++) {
+        for (int i = 0; i < randomCount(mouse)/3; i++) {
             herbivores.add(new Mouse(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(rabbit)/2; i++) {
+        for (int i = 0; i < randomCount(rabbit)/3; i++) {
             herbivores.add(new Rabbit(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(sheep)/2; i++) {
+        for (int i = 0; i < randomCount(sheep)/3; i++) {
             herbivores.add(new Sheep(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(anaconda); i++) {
+        for (int i = 0; i < randomCount(anaconda)/3; i++) {
             predators.add(new Anaconda(x, y, xLength, yLength));
             hunger(predators);
         }
-        for (int i = 0; i < randomCount(bear)/2; i++) {
+        for (int i = 0; i < randomCount(bear)/3; i++) {
             predators.add(new Bear(x, y, xLength, yLength));
             hunger(predators);
         }
-        for (int i = 0; i < randomCount(eagle); i++) {
+        for (int i = 0; i < randomCount(eagle)/3; i++) {
             predators.add(new Eagle(x, y, xLength, yLength));
             hunger(predators);
         }
-        for (int i = 0; i < randomCount(fox)/2; i++) {
+        for (int i = 0; i < randomCount(fox)/3; i++) {
             predators.add(new Fox(x, y, xLength, yLength));
             hunger(predators);
         }
-        for (int i = 0; i < randomCount(wolf)/2; i++) {
+        for (int i = 0; i < randomCount(wolf)/3; i++) {
             predators.add(new Wolf(x, y, xLength, yLength));
             hunger(predators);
         }

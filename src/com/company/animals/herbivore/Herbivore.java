@@ -9,11 +9,12 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Herbivore extends Animal {
-    private int xLocation;
-    private int yLocation;
-    private int xMax;
-    private int yMax;
-    private int movingSpeed;
+    private final int xLocation;
+    private final int yLocation;
+    private final int xMax;
+    private final int yMax;
+    private final int movingSpeed;
+
     public Herbivore(int xLocation, int yLocation, int xMax, int yMax, int movingSpeed) {
         this.xLocation = xLocation;
         this.yLocation = yLocation;
@@ -26,8 +27,8 @@ public abstract class Herbivore extends Animal {
 public int[] move() {
         int[] returnCoordinates = new int[2];
         int direction = ThreadLocalRandom.current().nextInt(3);
-        int newXLocation = 0;
-        int newYLocation = 0;
+        int newXLocation;
+        int newYLocation;
 
         if (direction == 0){
             newXLocation = xLocation + movingSpeed;
@@ -37,13 +38,9 @@ public int[] move() {
             newXLocation = xLocation;
             newYLocation = yLocation + movingSpeed;
         }
-        else if (direction == 2){
+        else {
             newXLocation = xLocation - movingSpeed;
             newYLocation = yLocation;
-        }
-        else if (direction == 3){
-            newXLocation = xLocation;
-            newYLocation = yLocation - movingSpeed;
         }
         int x = (newXLocation + xMax)%xMax;
         int y = (newYLocation + yMax)%yMax;
