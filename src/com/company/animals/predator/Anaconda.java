@@ -11,6 +11,16 @@ public class Anaconda extends Predator {
     public static final int movingSpeed = 1;
     public static final double canEat = 3;
 
+    private int hunger;
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
+
     public Anaconda(int xLocation, int yLocation, int xMax, int yMax) {
         super(xLocation, yLocation, xMax, yMax, movingSpeed);
     }

@@ -27,7 +27,7 @@ public class Island {
                 total = total + locations[i][j].calculate(locations[i][j]);
             }
         }
-        System.out.println(total);
+        System.out.println("Total animal count: " + total);
     }
 
         public void migrate() {

@@ -15,7 +15,7 @@ public class Location {
     List<Predator> predators = new ArrayList<>();
     //List<Plant> plants = new ArrayList<>();
 
-    private int boar = 0;
+    int boar = 0;
     int buffalo = 0;
     int caterpillar = 0;
     int deer = 0;
@@ -140,11 +140,13 @@ public class Location {
         return (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
     }
     public void eating(){
-        for (Predator predator : predators) {
-            predator.eat(predator, herbivores);
-        }
-        Iterator<Herbivore> iterator = herbivores.iterator();
-            Herbivore nextHerbivore = iterator.next();
+        Iterator<Predator> iterator = predators.iterator();
+        Predator nextPredator = iterator.next();
+        nextPredator.eat(nextPredator, herbivores);
+            nextPredator.checkHealth(nextPredator, predators);
+
+        Iterator<Herbivore> iterator1 = herbivores.iterator();
+            Herbivore nextHerbivore = iterator1.next();
             nextHerbivore.eat(nextHerbivore, herbivores);
     }
 
@@ -179,20 +181,25 @@ public class Location {
         for (int i = 0; i < randomCount(sheep)/2; i++) {
             herbivores.add(new Sheep(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(anaconda)/2; i++) {
+        for (int i = 0; i < randomCount(anaconda); i++) {
             predators.add(new Anaconda(x, y, xLength, yLength));
+            hunger(predators);
         }
         for (int i = 0; i < randomCount(bear)/2; i++) {
             predators.add(new Bear(x, y, xLength, yLength));
+            hunger(predators);
         }
-        for (int i = 0; i < randomCount(eagle)/2; i++) {
+        for (int i = 0; i < randomCount(eagle); i++) {
             predators.add(new Eagle(x, y, xLength, yLength));
+            hunger(predators);
         }
         for (int i = 0; i < randomCount(fox)/2; i++) {
             predators.add(new Fox(x, y, xLength, yLength));
+            hunger(predators);
         }
         for (int i = 0; i < randomCount(wolf)/2; i++) {
             predators.add(new Wolf(x, y, xLength, yLength));
+            hunger(predators);
         }
     }
 
@@ -204,6 +211,25 @@ public class Location {
         return returnNumber;
     }
 
+    private void hunger(List<Predator> predators){
+        for (Predator predator : predators) {
+            if (predator instanceof Anaconda){
+                ((Anaconda) predator).setHunger(((Anaconda) predator).getHunger()/2);
+            }
+            if (predator instanceof Bear){
+                ((Bear) predator).setHunger(((Bear) predator).getHunger()/2);
+            }
+            if (predator instanceof Eagle){
+                ((Eagle) predator).setHunger(((Eagle) predator).getHunger()/2);
+            }
+            if (predator instanceof Fox){
+                ((Fox) predator).setHunger(((Fox) predator).getHunger()/2);
+            }
+            if (predator instanceof Wolf){
+                ((Wolf) predator).setHunger(((Wolf) predator).getHunger()/2);
+            }
+        }
+    }
 
 
 

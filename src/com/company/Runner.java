@@ -9,19 +9,24 @@ public class Runner {
 
         Island island = new Island();
         island.initialize();
+        System.out.println("*************************** Initialization *******************************************************************");
+        island.print();
 
 
         while (true){
 
-            island.print();
-            System.out.println("**********************************************************************************************");
+
+            System.out.println("**************************** Migrate ******************************************************************");
             island.migrate();
             island.print();
-            System.out.println("**********************************************************************************************");
+            System.out.println("**************************** Hunt ******************************************************************");
             island.hunt();
             island.print();
+            System.out.println("**************************** Reproduction ******************************************************************");
             island.reproduct();
             island.print();
+            //island.reproduct();
+            //island.print();
             Thread.sleep(1000);
         }
 

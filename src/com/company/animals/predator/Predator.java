@@ -4,9 +4,6 @@ import com.company.Diet;
 import com.company.animals.Animal;
 import com.company.animals.herbivore.*;
 
-import java.lang.annotation.Annotation;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -17,8 +14,6 @@ public abstract class Predator extends Animal {
     private int yMax;
     private int movingSpeed;
 
-    //@Override
-    //public abstract void eat(List<Herbivore> herbivores);
 
     public Predator(int xLocation, int yLocation, int xMax, int yMax, int movingSpeed) {
         this.xLocation = xLocation;
@@ -62,26 +57,126 @@ public abstract class Predator extends Animal {
     public void die(List<Predator> predators, Predator predator){
         predators.remove(predator);
     }
-    @Override
-    public void eat(Predator predator, List<Herbivore> herbivores){
-        Diet annotation = predator.getClass().getAnnotation(Diet.class);
-        Iterator<Herbivore> iterator = herbivores.iterator();
-        Herbivore nextHerbivore = iterator.next();
-        if (predator.eatOrNot(annotation.eatBoar()) && nextHerbivore instanceof Boar) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatBuffalo()) && nextHerbivore instanceof Buffalo) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatCaterpillar()) && nextHerbivore instanceof Caterpillar) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatDeer()) && nextHerbivore instanceof Deer) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatDuck()) && nextHerbivore instanceof Duck) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatGoat()) && nextHerbivore instanceof Goat) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatHorse()) && nextHerbivore instanceof Horse) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatMouse()) && nextHerbivore instanceof Mouse) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatRabbit()) && nextHerbivore instanceof Rabbit) nextHerbivore.die(herbivores, nextHerbivore);
-        if (predator.eatOrNot(annotation.eatSheep()) && nextHerbivore instanceof Sheep) nextHerbivore.die(herbivores, nextHerbivore);
-
-    }
 
     public boolean eatOrNot(int chance){
         int random = ThreadLocalRandom.current().nextInt(101);
         return random <= chance;
     }
+
+    @Override
+    public void eat (Predator predator, List<Herbivore> herbivores){
+
+        if (predator instanceof Anaconda){
+            int appetite = ((Anaconda) predator).getHunger();
+            if (appetite < Anaconda.canEat){
+                int hunt = predator.hunt(predator, herbivores);
+                if (hunt > Anaconda.canEat) {((Anaconda) predator).setHunger((int) Anaconda.canEat);}
+                else ((Anaconda) predator).setHunger(((Anaconda) predator).getHunger() + hunt);
+            }
+            else System.out.println("Anaconda is full");
+        }
+        if (predator instanceof Bear){
+            int appetite = ((Bear) predator).getHunger();
+            if (appetite < Bear.canEat){
+                int hunt = predator.hunt(predator, herbivores);
+                if (hunt > Bear.canEat) {((Bear) predator).setHunger((int) Bear.canEat);}
+                else ((Bear) predator).setHunger(((Bear) predator).getHunger() + hunt);
+            }
+            else System.out.println("Bear is full");
+        }
+        if (predator instanceof Eagle){
+            int appetite = ((Eagle) predator).getHunger();
+            if (appetite < Eagle.canEat){
+                int hunt = predator.hunt(predator, herbivores);
+                if (hunt > Eagle.canEat) {((Eagle) predator).setHunger((int) Eagle.canEat);}
+                else ((Eagle) predator).setHunger(((Eagle) predator).getHunger() + hunt);
+            }
+            else System.out.println("Eagle is full");
+        }
+        if (predator instanceof Fox){
+            int appetite = ((Fox) predator).getHunger();
+            if (appetite < Fox.canEat){
+                int hunt = predator.hunt(predator, herbivores);
+                if (hunt > Fox.canEat) {((Fox) predator).setHunger((int) Fox.canEat);}
+                else ((Fox) predator).setHunger(((Fox) predator).getHunger() + hunt);
+            }
+            else System.out.println("Fox is full");
+        }
+        if (predator instanceof Wolf){
+            int appetite = ((Wolf) predator).getHunger();
+            if (appetite < Wolf.canEat){
+                int hunt = predator.hunt(predator, herbivores);
+                if (hunt > Wolf.canEat) {((Wolf) predator).setHunger((int) Wolf.canEat);}
+                else ((Wolf) predator).setHunger(((Wolf) predator).getHunger() + hunt);
+            }
+            else System.out.println("Wolf is full");
+        }
+    }
+
+    public int hunt(Predator predator, List<Herbivore> herbivores){
+        int hungerCount = 0;
+        Diet annotation = predator.getClass().getAnnotation(Diet.class);
+        Herbivore herbivore = herbivores.get(random(herbivores.size()));
+        if (predator.eatOrNot(annotation.eatBoar()) && herbivore instanceof Boar) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Bear.weight;
+        }
+        if (predator.eatOrNot(annotation.eatBuffalo()) && herbivore instanceof Buffalo) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Buffalo.weight;
+        }
+        if (predator.eatOrNot(annotation.eatCaterpillar()) && herbivore instanceof Caterpillar) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Caterpillar.weight;
+        }
+        if (predator.eatOrNot(annotation.eatDeer()) && herbivore instanceof Deer) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Deer.weight;
+        }
+        if (predator.eatOrNot(annotation.eatDuck()) && herbivore instanceof Duck) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Duck.weight;
+        }
+        if (predator.eatOrNot(annotation.eatGoat()) && herbivore instanceof Goat) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Goat.weight;
+        }
+        if (predator.eatOrNot(annotation.eatHorse()) && herbivore instanceof Horse) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Horse.weight;
+        }
+        if (predator.eatOrNot(annotation.eatMouse()) && herbivore instanceof Mouse) {herbivore.die(herbivores, herbivore);
+            hungerCount = 1;
+        }
+        if (predator.eatOrNot(annotation.eatRabbit()) && herbivore instanceof Rabbit) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Rabbit.weight;
+        }
+        if (predator.eatOrNot(annotation.eatSheep()) && herbivore instanceof Sheep) {herbivore.die(herbivores, herbivore);
+            hungerCount = (int) Sheep.weight;
+        }
+        return hungerCount;
+    }
+
+    public void checkHealth(Predator predator, List<Predator> predators){
+        if (predator instanceof Anaconda){
+            if (((Anaconda) predator).getHunger() == 0){predator.die(predators, predator);}
+            }
+            else System.out.println("Anaconda is dead");
+        if (predator instanceof Eagle){
+            if (((Eagle) predator).getHunger() == 0){predator.die(predators, predator);}
+        }
+        else System.out.println("Eagle is dead");
+        if (predator instanceof Bear){
+            if (((Bear) predator).getHunger() == 0){predator.die(predators, predator);}
+        }
+        else System.out.println("Bear is full");
+        if (predator instanceof Fox){
+            if (((Fox) predator).getHunger() == 0){predator.die(predators, predator);}
+        }
+        else System.out.println("Fox is full");
+        if (predator instanceof Wolf){
+            if (((Wolf) predator).getHunger() == 0){predator.die(predators, predator);}
+        }
+        else System.out.println("Wolf is full");
+    }
+
+
+
+    public int random(int count){
+        return ThreadLocalRandom.current().nextInt(count);
+    }
+
 }
