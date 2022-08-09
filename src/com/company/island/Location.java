@@ -147,7 +147,7 @@ public class Location {
 
         Iterator<Herbivore> iterator1 = herbivores.iterator();
             Herbivore nextHerbivore = iterator1.next();
-            nextHerbivore.eat(nextHerbivore, herbivores);
+            nextHerbivore.eat(herbivores);
     }
 
     public void startReproduct(int x, int y, int xLength, int yLength){
