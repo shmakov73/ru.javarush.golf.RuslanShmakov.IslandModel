@@ -4,6 +4,7 @@ import com.company.Diet;
 import com.company.animals.herbivore.*;
 import com.company.animals.predator.*;
 import com.company.island.Location;
+import com.company.plant.Plant;
 
 import java.util.Iterator;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Animal {
         this.movingSpeed = movingSpeed;
     }
 
-    public void eat(Predator predator, List<Herbivore> herbivores){}
+    //public void eat(Predator predator, List<Herbivore> herbivores){}
 
     public void move(Location location, Location[][] locations) {
         location.getLock().lock();
@@ -131,7 +132,13 @@ public class Animal {
         if (this.eatOrNot(annotation.eatMouse())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatRabbit())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatSheep())) nextVictim.die(victims);
-        if (this.eatOrNot(annotation.eatPlants())) nextVictim.die(victims);
+        //if (this.eatOrNot(annotation.eatPlants())) nextVictim.die(victims);
+
+
+    }
+
+    public void eatPlant(List<Plant> plants) {
+        Diet annotation = this.getClass().getAnnotation(Diet.class);
 
 
     }

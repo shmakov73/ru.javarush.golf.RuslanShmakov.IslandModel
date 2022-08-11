@@ -24,10 +24,10 @@ public class Runner {
             island.migrate();
             island.print();
             System.out.println("**************************** Hunt ******************************************************************");
-            //island.hunt();
+            island.hunt();
             island.print();
             System.out.println("**************************** Reproduction ******************************************************************");
-            //island.reproduct();
+            island.reproduct();
             island.print();
             //island.reproduct();
             //island.print();

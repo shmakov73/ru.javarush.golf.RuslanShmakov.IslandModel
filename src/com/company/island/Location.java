@@ -237,7 +237,10 @@ public class Location {
         Iterator<Herbivore> iterator1 = herbivores.iterator();
             Herbivore nextHerbivore = iterator1.next();
             nextHerbivore.eat(herbivores);
+            nextHerbivore.eatPlant(plants);
             this.getLock().unlock();
+
+
     }
 
     public void startReproduct(){

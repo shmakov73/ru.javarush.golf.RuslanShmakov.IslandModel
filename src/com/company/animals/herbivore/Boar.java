@@ -16,4 +16,14 @@ public class Boar extends Herbivore{
         super(xLocation, yLocation, xMax, yMax, movingSpeed);
     }
 
+    private int hunger;
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
+
 }
