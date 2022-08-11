@@ -10,7 +10,12 @@ public class Island {
     public static int islandLength = 4;
     public static int islandWidth = 4;
 
-    Location[][] locations = new Location[islandLength][islandWidth];
+    public static Location[][] locations = new Location[islandLength][islandWidth];
+
+
+    public Location[][] getLocations() {
+        return locations;
+    }
 
     public void initialize(){
         for (int i = 0; i < locations.length; i++) {
@@ -40,18 +45,7 @@ public class Island {
         public void migrate() {
             for (int i = 0; i < locations.length; i++) {
                 for (int j = 0; j < locations[i].length; j++) {
-                    for (int k = 0; k < locations[i][j].getPredators().size(); k++) {
-                        locations[i][j].getPredators().get(k).move(locations[i][j], locations);
-                    }
-                    for (int k = 0; k < locations[i][j].getHerbivores().size(); k++) {
-                        locations[i][j].getHerbivores().get(k).move(locations[i][j], locations);
-                    }
-//                    for (int s = 0; s < locations[i][j].predators.size(); s++) {
-//                        locations[i][j].predators.get(s).move();
-//                        int[] newCoordinates = locations[i][j].predators.get(s).move();
-//                        locations[newCoordinates[0]][newCoordinates[1]].predators.add(locations[i][j].predators.get(s));
-//                        locations[i][j].predators.remove(locations[i][j].predators.get(s));
-//                    }
+                    locations[i][j].moveAnimals(locations);
                 }
             }
         }

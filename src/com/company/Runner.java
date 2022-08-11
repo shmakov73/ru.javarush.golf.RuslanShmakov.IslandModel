@@ -27,7 +27,7 @@ public class Runner {
             //island.hunt();
             island.print();
             System.out.println("**************************** Reproduction ******************************************************************");
-            island.reproduct();
+            //island.reproduct();
             island.print();
             //island.reproduct();
             //island.print();

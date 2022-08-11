@@ -31,6 +31,7 @@ public class Animal {
     public void eat(Predator predator, List<Herbivore> herbivores){}
 
     public void move(Location location, Location[][] locations) {
+        location.getLock().lock();
         int[] newCoordinates = this.getNewCoordinates();
         if (isLocationFree(location)) {
             locations[newCoordinates[0]][newCoordinates[1]].addAnimal(this);
@@ -42,6 +43,7 @@ public class Animal {
             }
         }
         else move(location, locations);
+        location.getLock().unlock();
     }
 
 

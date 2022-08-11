@@ -8,7 +8,10 @@ import com.company.plant.Plant;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Location {
 
@@ -16,6 +19,12 @@ public class Location {
     private int y;
     private int xLength = Island.islandLength;
     private int yLength = Island.islandWidth;
+
+    private final Lock lock = new ReentrantLock(true);
+
+    public Lock getLock() {
+        return lock;
+    }
 
     public Location() {
     }
@@ -219,6 +228,7 @@ public class Location {
         return (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
     }
     public void eating(){
+        this.getLock().lock();
         Iterator<Predator> iterator = predators.iterator();
         Predator nextPredator = iterator.next();
         nextPredator.eat(nextPredator, herbivores);
@@ -227,9 +237,11 @@ public class Location {
         Iterator<Herbivore> iterator1 = herbivores.iterator();
             Herbivore nextHerbivore = iterator1.next();
             nextHerbivore.eat(herbivores);
+            this.getLock().unlock();
     }
 
     public void startReproduct(){
+        this.getLock().lock();
         for (int i = 0; i < randomCount(boar)/6; i++) {
             herbivores.add(new Boar(x, y, xLength, yLength));
         }
@@ -280,6 +292,7 @@ public class Location {
             predators.add(new Wolf(x, y, xLength, yLength));
             hunger(predators);
         }
+        this.getLock().unlock();
     }
 
     private int randomCount (int animalCount){
@@ -310,22 +323,18 @@ public class Location {
         }
     }
 
-//    public void move(){
-//        for (int s = 0; s < this.herbivores.size(); s++) {
-//            int[] newCoordinates = this.herbivores.get(s).move();
-//            locations[newCoordinates[0]][newCoordinates[1]].herbivores.add(locations[i][j].herbivores.get(s));
-//            locations[i][j].herbivores.remove(locations[i][j].herbivores.get(s));
-//        }
-//        for (int s = 0; s < this.predators.size(); s++) {
-//            int[] newCoordinates = this.predators.get(s).move();
-//            locations[newCoordinates[0]][newCoordinates[1]].predators.add(this.predators.get(s));
-//            locations[i][j].predators.remove(locations[i][j].predators.get(s));
-//    }
+    public void moveAnimals(Location[][] locations){
+        this.getLock().lock();
 
+        List<Predator> predatorsList = new CopyOnWriteArrayList<>(predators);
+        List<Herbivore> herbivoresList = new CopyOnWriteArrayList<>(herbivores);
 
-
-    @Override
-    public String toString() {
-        return " | | ";
+        for (Predator predator : predatorsList) {
+            predator.move(this, locations);
+        }
+        for (Herbivore herbivore : herbivoresList) {
+            herbivore.move(this, Island.locations);
+        }
+        this.getLock().unlock();
     }
 }
