@@ -12,6 +12,7 @@ public class Eagle extends Predator {
     public static final int movingSpeed = 3;
     public static final double canEat = 1;
 
+
     private int hunger;
 
     public int getHunger() {

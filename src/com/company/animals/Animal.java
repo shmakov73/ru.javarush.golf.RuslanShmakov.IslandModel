@@ -2,7 +2,8 @@ package com.company.animals;
 
 import com.company.Diet;
 import com.company.animals.herbivore.*;
-import com.company.animals.predator.Predator;
+import com.company.animals.predator.*;
+import com.company.island.Location;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +16,8 @@ public class Animal {
     private final int xMax;
     private final int yMax;
     private final int movingSpeed;
+    private final int moveAttempt = 5;
+    //public int maxCount;
 
 
     public Animal(int xLocation, int yLocation, int xMax, int yMax, int movingSpeed) {
@@ -27,26 +30,70 @@ public class Animal {
 
     public void eat(Predator predator, List<Herbivore> herbivores){}
 
-    public int[] move() {
+    public void move(Location location, Location[][] locations) {
+        int[] newCoordinates = this.getNewCoordinates();
+        if (isLocationFree(location)) {
+            locations[newCoordinates[0]][newCoordinates[1]].addAnimal(this);
+            if (this instanceof Predator) {
+                location.getPredators().remove(this);
+            }
+            if (this instanceof Herbivore) {
+                location.getHerbivores().remove(this);
+            }
+        }
+        else move(location, locations);
+    }
+
+
+    private boolean isLocationFree(Location location){
+        int maxCount = 0;
+        boolean returnValue;
+        if (this instanceof Boar){maxCount = Boar.maxCount;}
+        if (this instanceof Buffalo){maxCount = Buffalo.maxCount;}
+        if (this instanceof Caterpillar){maxCount = Caterpillar.maxCount;}
+        if (this instanceof Deer){maxCount = Deer.maxCount;}
+        if (this instanceof Duck){maxCount = Duck.maxCount;}
+        if (this instanceof Goat){maxCount = Goat.maxCount;}
+        if (this instanceof Horse){maxCount = Horse.maxCount;}
+        if (this instanceof Mouse){maxCount = Mouse.maxCount;}
+        if (this instanceof Rabbit){maxCount = Rabbit.maxCount;}
+        if (this instanceof Sheep){maxCount = Sheep.maxCount;}
+        if (this instanceof Anaconda){maxCount = Anaconda.maxCount;}
+        if (this instanceof Bear){maxCount = Bear.maxCount;}
+        if (this instanceof Eagle){maxCount = Eagle.maxCount;}
+        if (this instanceof Fox){maxCount = Fox.maxCount;}
+        if (this instanceof Wolf){maxCount = Wolf.maxCount;}
+
+        int herbivoresCountOnLocation = (int) location.getHerbivores().stream().filter(this::equals).count();
+        int predatorsCountOnLocation = (int) location.getPredators().stream().filter(this::equals).count();
+        if (this instanceof Predator && predatorsCountOnLocation < maxCount) returnValue = true;
+        else if (this instanceof Herbivore && herbivoresCountOnLocation < maxCount) returnValue = true;
+        else returnValue = false;
+        return returnValue;
+    }
+
+
+    public int[] getNewCoordinates () {
         int[] returnCoordinates = new int[2];
-        int direction = ThreadLocalRandom.current().nextInt(3);
+        int direction = ThreadLocalRandom.current().nextInt(4);
         int newXLocation;
         int newYLocation;
 
-        if (direction == 0){
+        if (direction == 0) {
             newXLocation = xLocation + movingSpeed;
             newYLocation = yLocation;
-        }
-        else if (direction == 1){
+        }else if (direction == 1) {
             newXLocation = xLocation;
             newYLocation = yLocation + movingSpeed;
-        }
-        else {
+        }else if (direction == 2){
             newXLocation = xLocation - movingSpeed;
             newYLocation = yLocation;
+        }else {
+            newXLocation = xLocation;
+            newYLocation = yLocation - movingSpeed;
         }
-        int x = (newXLocation + xMax)%xMax;
-        int y = (newYLocation + yMax)%yMax;
+        int x = (newXLocation + xMax) % xMax;
+        int y = (newYLocation + yMax) % yMax;
         returnCoordinates[0] = x;
         returnCoordinates[1] = y;
 
@@ -72,17 +119,6 @@ public class Animal {
         Iterator<? extends Animal> iterator =  victims.iterator();
         Animal nextVictim = iterator.next();
 
-//        if (animal.eatOrNot(annotation.eatBoar()) && nextVictim instanceof Boar) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatBuffalo()) && nextVictim instanceof Buffalo) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatCaterpillar()) && nextVictim instanceof Caterpillar) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatDeer()) && nextVictim instanceof Deer) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatDuck()) && nextVictim instanceof Duck) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatGoat()) && nextVictim instanceof Goat) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatHorse()) && nextVictim instanceof Horse) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatMouse()) && nextVictim instanceof Mouse) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatRabbit()) && nextVictim instanceof Rabbit) nextVictim.die(victims, nextVictim);
-//        if (animal.eatOrNot(annotation.eatSheep()) && nextVictim instanceof Sheep) nextVictim.die(victims, nextVictim);
-
         if (this.eatOrNot(annotation.eatBoar())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatBuffalo())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatCaterpillar())) nextVictim.die(victims);
@@ -93,8 +129,11 @@ public class Animal {
         if (this.eatOrNot(annotation.eatMouse())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatRabbit())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatSheep())) nextVictim.die(victims);
+        if (this.eatOrNot(annotation.eatPlants())) nextVictim.die(victims);
 
 
     }
+
+
 }
 

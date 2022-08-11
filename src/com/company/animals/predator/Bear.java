@@ -13,6 +13,7 @@ public class Bear extends Predator {
     public static final int movingSpeed = 2;
     public static final double canEat = 80;
 
+
     private int hunger;
 
     public int getHunger() {

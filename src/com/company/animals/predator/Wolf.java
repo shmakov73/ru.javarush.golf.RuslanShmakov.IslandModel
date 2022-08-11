@@ -9,6 +9,8 @@ import com.company.Diet;
 public class Wolf extends Predator {
 
     public static final int maxCount = 30;
+
+
     public static final double weight = 50;
     public static final int movingSpeed = 3;
     public static final double canEat = 8;

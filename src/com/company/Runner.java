@@ -4,6 +4,9 @@ import com.company.animals.herbivore.Herbivore;
 import com.company.island.Island;
 import com.company.island.Location;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 public class Runner {
     public static void main(String[] args) throws InterruptedException {
 
@@ -13,6 +16,7 @@ public class Runner {
         island.print();
 
 
+
         while (true){
 
 
@@ -20,7 +24,7 @@ public class Runner {
             island.migrate();
             island.print();
             System.out.println("**************************** Hunt ******************************************************************");
-            island.hunt();
+            //island.hunt();
             island.print();
             System.out.println("**************************** Reproduction ******************************************************************");
             island.reproduct();
