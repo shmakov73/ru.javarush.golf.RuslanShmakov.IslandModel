@@ -15,4 +15,13 @@ public class Duck extends Herbivore{
     public Duck(int xLocation, int yLocation, int xMax, int yMax) {
         super(xLocation, yLocation, xMax, yMax, movingSpeed);
     }
+    private int hunger;
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public void setHunger(int hunger) {
+        this.hunger = hunger;
+    }
 }

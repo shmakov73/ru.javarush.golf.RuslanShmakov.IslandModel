@@ -4,11 +4,12 @@ import com.company.animals.herbivore.Herbivore;
 import com.company.island.Island;
 import com.company.island.Location;
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 public class Runner {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, BrokenBarrierException {
 
         Island island = new Island();
         island.initialize();

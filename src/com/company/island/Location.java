@@ -8,7 +8,9 @@ import com.company.plant.Plant;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -61,8 +63,8 @@ public class Location {
         this.yLength = yLength;
     }
 
-    public List<Herbivore> herbivores = new ArrayList<>();
-    public List<Predator> predators = new ArrayList<>();
+    private List<Herbivore> herbivores = new ArrayList<>();
+    private List<Predator> predators = new ArrayList<>();
     private List<Plant> plants = new ArrayList<>();
 
     public List<Herbivore> getHerbivores() {
@@ -89,21 +91,21 @@ public class Location {
         this.plants = plants;
     }
 
-    int boar = 0;
-    int buffalo = 0;
-    int caterpillar = 0;
-    int deer = 0;
-    int duck = 0;
-    int goat = 0;
-    int horse = 0;
-    int mouse = 0;
-    int rabbit = 0;
-    int sheep = 0;
-    int anaconda = 0;
-    int bear = 0;
-    int eagle = 0;
-    int fox = 0;
-    int wolf = 0;
+//    int boar = 0;
+//    int buffalo = 0;
+//    int caterpillar = 0;
+//    int deer = 0;
+//    int duck = 0;
+//    int goat = 0;
+//    int horse = 0;
+//    int mouse = 0;
+//    int rabbit = 0;
+//    int sheep = 0;
+//    int anaconda = 0;
+//    int bear = 0;
+//    int eagle = 0;
+//    int fox = 0;
+//    int wolf = 0;
 
     public void addHerbivoresToList(){
         for (int i = 0; i < randomCount(Boar.maxCount); i++) {
@@ -155,6 +157,7 @@ public class Location {
             predators.add(new Wolf(x, y, xLength, yLength));
         }
     }
+
     public void addAnimal(Animal animal){
         if (animal instanceof Predator){
             predators.add((Predator) animal);
@@ -165,27 +168,27 @@ public class Location {
     }
 
     public void addPlantsToList(){
-        for (int i = 0; i < randomCount(Plant.maxCount); i++) {
+        for (int i = 0; i < 10000; i++) {
             plants.add(new Plant(1));
         }
     }
 
     public int calculate(Location location){
-        boar = 0;
-        buffalo = 0;
-        caterpillar = 0;
-        deer = 0;
-        duck = 0;
-        goat = 0;
-        horse = 0;
-        mouse = 0;
-        rabbit = 0;
-        sheep = 0;
-        anaconda = 0;
-        bear = 0;
-        eagle = 0;
-        fox = 0;
-        wolf = 0;
+        int boar = 0;
+        int buffalo = 0;
+        int caterpillar = 0;
+        int deer = 0;
+        int duck = 0;
+        int goat = 0;
+        int horse = 0;
+        int mouse = 0;
+        int rabbit = 0;
+        int sheep = 0;
+        int anaconda = 0;
+        int bear = 0;
+        int eagle = 0;
+        int fox = 0;
+        int wolf = 0;
 
         for (int k = 0; k < location.herbivores.size(); k++) {
             if (location.herbivores.get(k) instanceof Boar) boar++;
@@ -228,116 +231,115 @@ public class Location {
         return (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
     }
     public void eating(){
+        //cyclicBarrier1.await();
         this.getLock().lock();
-        Iterator<Predator> iterator = predators.iterator();
-        Predator nextPredator = iterator.next();
-        nextPredator.eat(nextPredator, herbivores);
-            nextPredator.checkHealth(nextPredator, predators);
+        try {
+            Iterator<Predator> iterator = predators.iterator();
+            Predator nextPredator = iterator.next();
+            nextPredator.eat(nextPredator, herbivores);
+            nextPredator.checkHealth(predators);
 
-        Iterator<Herbivore> iterator1 = herbivores.iterator();
+            Iterator<Herbivore> iterator1 = herbivores.iterator();
             Herbivore nextHerbivore = iterator1.next();
             nextHerbivore.eat(herbivores);
             nextHerbivore.eatPlant(plants);
+            nextHerbivore.checkHealth(herbivores);
+            //cyclicBarrier2.await();
+        }
+        finally {
             this.getLock().unlock();
-
-
+        }
     }
 
     public void startReproduct(){
+        //cyclicBarrier2.await();
         this.getLock().lock();
-        for (int i = 0; i < randomCount(boar)/6; i++) {
-            herbivores.add(new Boar(x, y, xLength, yLength));
+        try {
+            for (int i = 0; i < randomCount(Boar.maxCount/100); i++) {
+                herbivores.add(new Boar(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Buffalo.maxCount/100); i++) {
+                herbivores.add(new Buffalo(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Caterpillar.maxCount/100); i++) {
+                herbivores.add(new Caterpillar(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Deer.maxCount/100); i++) {
+                herbivores.add(new Deer(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Duck.maxCount/100); i++) {
+                herbivores.add(new Duck(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Goat.maxCount/100); i++) {
+                herbivores.add(new Goat(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Horse.maxCount/100); i++) {
+                herbivores.add(new Horse(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Mouse.maxCount/100); i++) {
+                herbivores.add(new Mouse(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Rabbit.maxCount/100); i++) {
+                herbivores.add(new Rabbit(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Sheep.maxCount/100); i++) {
+                herbivores.add(new Sheep(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Anaconda.maxCount/2); i++) {
+                predators.add(new Anaconda(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Bear.maxCount/2); i++) {
+                predators.add(new Bear(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Eagle.maxCount/2); i++) {
+                predators.add(new Eagle(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Fox.maxCount/2); i++) {
+                predators.add(new Fox(x, y, xLength, yLength));
+            }
+            for (int i = 0; i < randomCount(Wolf.maxCount/2); i++) {
+                predators.add(new Wolf(x, y, xLength, yLength));
+            }
+            for (Herbivore herbivore : herbivores) {
+                herbivore.hunger();
+            }
+            for (Predator predator : predators) {
+                predator.hunger();
+            }
         }
-        for (int i = 0; i < randomCount(buffalo)/6; i++) {
-            herbivores.add(new Buffalo(x, y, xLength, yLength));
+        finally {
+            this.getLock().unlock();
         }
-        for (int i = 0; i < randomCount(caterpillar)/6; i++) {
-            herbivores.add(new Caterpillar(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(deer)/6; i++) {
-            herbivores.add(new Deer(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(duck)/6; i++) {
-            herbivores.add(new Duck(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(goat)/6; i++) {
-            herbivores.add(new Goat(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(horse)/6; i++) {
-            herbivores.add(new Horse(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(mouse)/6; i++) {
-            herbivores.add(new Mouse(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(rabbit)/6; i++) {
-            herbivores.add(new Rabbit(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(sheep)/6; i++) {
-            herbivores.add(new Sheep(x, y, xLength, yLength));
-        }
-        for (int i = 0; i < randomCount(anaconda)/6; i++) {
-            predators.add(new Anaconda(x, y, xLength, yLength));
-            hunger(predators);
-        }
-        for (int i = 0; i < randomCount(bear)/6; i++) {
-            predators.add(new Bear(x, y, xLength, yLength));
-            hunger(predators);
-        }
-        for (int i = 0; i < randomCount(eagle)/6; i++) {
-            predators.add(new Eagle(x, y, xLength, yLength));
-            hunger(predators);
-        }
-        for (int i = 0; i < randomCount(fox)/6; i++) {
-            predators.add(new Fox(x, y, xLength, yLength));
-            hunger(predators);
-        }
-        for (int i = 0; i < randomCount(wolf)/6; i++) {
-            predators.add(new Wolf(x, y, xLength, yLength));
-            hunger(predators);
-        }
-        this.getLock().unlock();
     }
 
     private int randomCount (int animalCount){
-        int returnNumber = 1;
+        int returnNumber;
         if (animalCount > 2) {
             returnNumber = ThreadLocalRandom.current().nextInt(animalCount);
         }
+        else returnNumber = 0;
         return returnNumber;
     }
 
-    private void hunger(List<Predator> predators){
-        for (Predator predator : predators) {
-            if (predator instanceof Anaconda){
-                ((Anaconda) predator).setHunger(((Anaconda) predator).getHunger()/2);
-            }
-            if (predator instanceof Bear){
-                ((Bear) predator).setHunger(((Bear) predator).getHunger()/2);
-            }
-            if (predator instanceof Eagle){
-                ((Eagle) predator).setHunger(((Eagle) predator).getHunger()/2);
-            }
-            if (predator instanceof Fox){
-                ((Fox) predator).setHunger(((Fox) predator).getHunger()/2);
-            }
-            if (predator instanceof Wolf){
-                ((Wolf) predator).setHunger(((Wolf) predator).getHunger()/2);
-            }
-        }
-    }
-
-    public void moveAnimals(Location[][] locations){
+    public boolean moveAnimals(Location[][] locations){
+        //cyclicBarrier3.await();
         this.getLock().lock();
+        try {
+            List<Predator> predatorsList = new CopyOnWriteArrayList<>(predators);
+            List<Herbivore> herbivoresList = new CopyOnWriteArrayList<>(herbivores);
 
-        List<Predator> predatorsList = new CopyOnWriteArrayList<>(predators);
-        List<Herbivore> herbivoresList = new CopyOnWriteArrayList<>(herbivores);
-
-        for (Predator predator : predatorsList) {
-            predator.move(this, locations);
+            for (Predator predator : predatorsList) {
+                predator.move(this, locations);
+            }
+            for (Herbivore herbivore : herbivoresList) {
+                herbivore.move(this, Island.locations);
+            }
+            calculate(this);
+            //cyclicBarrier1.await();
         }
-        for (Herbivore herbivore : herbivoresList) {
-            herbivore.move(this, Island.locations);
+        finally {
+            this.getLock().unlock();
         }
-        this.getLock().unlock();
+        return true;
     }
 }

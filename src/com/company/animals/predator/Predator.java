@@ -102,27 +102,45 @@ public abstract class Predator extends Animal {
         return hungerCount;
     }
 
-    public void checkHealth(Predator predator, List<Predator> predators){
-        if (predator instanceof Anaconda){
-            if (((Anaconda) predator).getHunger() == 0){predator.die(predators);}
+    public void checkHealth(List<Predator> predators){
+        if (this instanceof Anaconda){
+            if (((Anaconda) this).getHunger() == 0){this.die(predators);}
             }
             else System.out.println("Anaconda is dead");
-        if (predator instanceof Eagle){
-            if (((Eagle) predator).getHunger() == 0){predator.die(predators);}
+        if (this instanceof Eagle){
+            if (((Eagle) this).getHunger() == 0){this.die(predators);}
         }
         else System.out.println("Eagle is dead");
-        if (predator instanceof Bear){
-            if (((Bear) predator).getHunger() == 0){predator.die(predators);}
+        if (this instanceof Bear){
+            if (((Bear) this).getHunger() == 0){this.die(predators);}
         }
         else System.out.println("Bear is dead");
-        if (predator instanceof Fox){
-            if (((Fox) predator).getHunger() == 0){predator.die(predators);}
+        if (this instanceof Fox){
+            if (((Fox) this).getHunger() == 0){this.die(predators);}
         }
         else System.out.println("Fox is dead");
-        if (predator instanceof Wolf){
-            if (((Wolf) predator).getHunger() == 0){predator.die(predators);}
+        if (this instanceof Wolf){
+            if (((Wolf) this).getHunger() == 0){this.die(predators);}
         }
         else System.out.println("Wolf is dead");
+    }
+
+    public void hunger(){
+            if (this instanceof Anaconda){
+                ((Anaconda) this).setHunger(((Anaconda) this).getHunger() - ((Anaconda) this).getHunger()/4);
+            }
+            if (this instanceof Bear){
+                ((Bear) this).setHunger(((Bear) this).getHunger() - ((Bear) this).getHunger()/4);
+            }
+            if (this instanceof Eagle){
+                ((Eagle) this).setHunger(((Eagle) this).getHunger() - ((Eagle) this).getHunger()/4);
+            }
+            if (this instanceof Fox){
+                ((Fox) this).setHunger(((Fox) this).getHunger() - ((Fox) this).getHunger()/4);
+            }
+            if (this instanceof Wolf){
+                ((Wolf) this).setHunger(((Wolf) this).getHunger() - ((Wolf) this).getHunger()/4);
+            }
     }
 
 }

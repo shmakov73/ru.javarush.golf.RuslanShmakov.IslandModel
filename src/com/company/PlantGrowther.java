@@ -8,8 +8,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class PlantGrowther implements Runnable {
 
-    public static int maxCount = 1000;
-    private Location location;
+    public static int maxCount = 10000;
+    private final Location location;
 
     public PlantGrowther(Location location) {
         this.location = location;
