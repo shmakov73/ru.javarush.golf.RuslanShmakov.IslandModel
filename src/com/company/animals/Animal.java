@@ -17,9 +17,6 @@ public class Animal {
     private final int xMax;
     private final int yMax;
     private final int movingSpeed;
-    private final int moveAttempt = 5;
-    //public int maxCount;
-
 
     public Animal(int xLocation, int yLocation, int xMax, int yMax, int movingSpeed) {
         this.xLocation = xLocation;
@@ -28,8 +25,6 @@ public class Animal {
         this.yMax = yMax;
         this.movingSpeed = movingSpeed;
     }
-
-    //public void eat(Predator predator, List<Herbivore> herbivores){}
 
     public void move(Location location, Location[][] locations) {
         location.getLock().lock();
@@ -46,7 +41,6 @@ public class Animal {
         else move(location, locations);
         location.getLock().unlock();
     }
-
 
     private boolean isLocationFree(Location location){
         int maxCount = 0;
@@ -70,11 +64,9 @@ public class Animal {
         int herbivoresCountOnLocation = (int) location.getHerbivores().stream().filter(this::equals).count();
         int predatorsCountOnLocation = (int) location.getPredators().stream().filter(this::equals).count();
         if (this instanceof Predator && predatorsCountOnLocation < maxCount) returnValue = true;
-        else if (this instanceof Herbivore && herbivoresCountOnLocation < maxCount) returnValue = true;
-        else returnValue = false;
+        else returnValue = this instanceof Herbivore && herbivoresCountOnLocation < maxCount;
         return returnValue;
     }
-
 
     public int[] getNewCoordinates () {
         int[] returnCoordinates = new int[2];
@@ -102,7 +94,6 @@ public class Animal {
 
         return returnCoordinates;
     }
-
 
     public void die(List<? extends Animal> animals){
         animals.remove(this);
@@ -132,17 +123,6 @@ public class Animal {
         if (this.eatOrNot(annotation.eatMouse())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatRabbit())) nextVictim.die(victims);
         if (this.eatOrNot(annotation.eatSheep())) nextVictim.die(victims);
-        //if (this.eatOrNot(annotation.eatPlants())) nextVictim.die(victims);
-
-
     }
-
-    public void eatPlant(List<Plant> plants) {
-        Diet annotation = this.getClass().getAnnotation(Diet.class);
-
-
-    }
-
-
 }
 

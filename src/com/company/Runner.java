@@ -9,12 +9,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 public class Runner {
-    public static void main(String[] args) throws InterruptedException, BrokenBarrierException {
+    public static void main(String[] args) throws InterruptedException{
 
         Island island = new Island();
         island.initialize();
         System.out.println("*************************** Initialization *******************************************************************");
-        island.print();
+        //island.print();
 
 
 
@@ -23,14 +23,12 @@ public class Runner {
 
             System.out.println("**************************** Migrate ******************************************************************");
             island.migrate();
-            island.print();
+            //island.print();
             System.out.println("**************************** Hunt ******************************************************************");
             island.hunt();
-            island.print();
+            //island.print();
             System.out.println("**************************** Reproduction ******************************************************************");
             island.reproduct();
-            island.print();
-            //island.reproduct();
             //island.print();
             Thread.sleep(1000);
         }

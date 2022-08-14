@@ -5,7 +5,6 @@ import com.company.animals.Animal;
 import com.company.animals.herbivore.*;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Predator extends Animal {
 
@@ -15,7 +14,6 @@ public abstract class Predator extends Animal {
     }
 
 
-    //@Override
     public void eat (Predator predator, List<Herbivore> herbivores){
 
         if (predator instanceof Anaconda){
@@ -25,7 +23,7 @@ public abstract class Predator extends Animal {
                 if (hunt > Anaconda.canEat) {((Anaconda) predator).setHunger((int) Anaconda.canEat);}
                 else ((Anaconda) predator).setHunger(((Anaconda) predator).getHunger() + hunt);
             }
-            else System.out.println("Anaconda is full");
+            //else System.out.println("Anaconda is full");
         }
         if (predator instanceof Bear){
             int appetite = ((Bear) predator).getHunger();
@@ -34,7 +32,7 @@ public abstract class Predator extends Animal {
                 if (hunt > Bear.canEat) {((Bear) predator).setHunger((int) Bear.canEat);}
                 else ((Bear) predator).setHunger(((Bear) predator).getHunger() + hunt);
             }
-            else System.out.println("Bear is full");
+            //else System.out.println("Bear is full");
         }
         if (predator instanceof Eagle){
             int appetite = ((Eagle) predator).getHunger();
@@ -43,7 +41,7 @@ public abstract class Predator extends Animal {
                 if (hunt > Eagle.canEat) {((Eagle) predator).setHunger((int) Eagle.canEat);}
                 else ((Eagle) predator).setHunger(((Eagle) predator).getHunger() + hunt);
             }
-            else System.out.println("Eagle is full");
+            //else System.out.println("Eagle is full");
         }
         if (predator instanceof Fox){
             int appetite = ((Fox) predator).getHunger();
@@ -52,7 +50,7 @@ public abstract class Predator extends Animal {
                 if (hunt > Fox.canEat) {((Fox) predator).setHunger((int) Fox.canEat);}
                 else ((Fox) predator).setHunger(((Fox) predator).getHunger() + hunt);
             }
-            else System.out.println("Fox is full");
+            //else System.out.println("Fox is full");
         }
         if (predator instanceof Wolf){
             int appetite = ((Wolf) predator).getHunger();
@@ -61,7 +59,7 @@ public abstract class Predator extends Animal {
                 if (hunt > Wolf.canEat) {((Wolf) predator).setHunger((int) Wolf.canEat);}
                 else ((Wolf) predator).setHunger(((Wolf) predator).getHunger() + hunt);
             }
-            else System.out.println("Wolf is full");
+            //else System.out.println("Wolf is full");
         }
     }
 
@@ -106,23 +104,23 @@ public abstract class Predator extends Animal {
         if (this instanceof Anaconda){
             if (((Anaconda) this).getHunger() == 0){this.die(predators);}
             }
-            else System.out.println("Anaconda is dead");
+            //else System.out.println("Anaconda is dead");
         if (this instanceof Eagle){
             if (((Eagle) this).getHunger() == 0){this.die(predators);}
         }
-        else System.out.println("Eagle is dead");
+        //else System.out.println("Eagle is dead");
         if (this instanceof Bear){
             if (((Bear) this).getHunger() == 0){this.die(predators);}
         }
-        else System.out.println("Bear is dead");
+        //else System.out.println("Bear is dead");
         if (this instanceof Fox){
             if (((Fox) this).getHunger() == 0){this.die(predators);}
         }
-        else System.out.println("Fox is dead");
+        //else System.out.println("Fox is dead");
         if (this instanceof Wolf){
             if (((Wolf) this).getHunger() == 0){this.die(predators);}
         }
-        else System.out.println("Wolf is dead");
+        //else System.out.println("Wolf is dead");
     }
 
     public void hunger(){

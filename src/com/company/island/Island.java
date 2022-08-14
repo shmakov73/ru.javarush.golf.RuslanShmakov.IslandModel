@@ -1,10 +1,6 @@
 package com.company.island;
 
-import com.company.animals.herbivore.*;
-import com.company.animals.predator.*;
-
-import java.util.Arrays;
-import java.util.concurrent.BrokenBarrierException;
+import com.company.Statistics;
 
 public class Island {
 
@@ -12,7 +8,6 @@ public class Island {
     public static int islandWidth = 4;
 
     public static Location[][] locations = new Location[islandLength][islandWidth];
-
 
     public Location[][] getLocations() {
         return locations;
@@ -34,12 +29,12 @@ public class Island {
 
     public void print() {
         int total = 0;
-
+        Statistics statistics = new Statistics(locations);
         for (Location[] location : locations) {
             for (Location value : location) {
                 value.getLock().lock();
                 try {
-                    total = total + value.calculate(value);
+                    total = total + statistics.calculate(value);
                 } finally {
                     value.getLock().unlock();
                 }
@@ -65,7 +60,7 @@ public class Island {
             }
         }
 
-        public void reproduct() throws BrokenBarrierException, InterruptedException {
+        public void reproduct(){
             for (Location[] location : locations) {
                 for (Location value : location) {
                     value.startReproduct();

@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class IslandStarter extends Thread {
+public class IslandStarter{
 
     public static void main(String[] args) {
         Island island = new Island();
@@ -16,6 +16,7 @@ public class IslandStarter extends Thread {
 
         ScheduledExecutorService executorTasks = Executors.newScheduledThreadPool(1);
         ScheduledExecutorService executorPlantGrowth = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService executorStatistics = Executors.newScheduledThreadPool(1);
 
         for (int i = 0; i < island.getLocations().length; i++) {
             for (int j = 0; j < island.getLocations()[i].length; j++) {
@@ -24,6 +25,7 @@ public class IslandStarter extends Thread {
                 executorPlantGrowth.scheduleWithFixedDelay(new PlantGrowther(location), 2, 3, TimeUnit.SECONDS);
             }
         }
+        executorStatistics.scheduleWithFixedDelay(new Statistics(island.getLocations()), 1, 1, TimeUnit.SECONDS);
 
 
     }

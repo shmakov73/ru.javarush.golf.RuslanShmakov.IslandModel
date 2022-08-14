@@ -1,11 +1,7 @@
 package com.company.animals.herbivore;
 
 import com.company.animals.Animal;
-import com.company.animals.predator.*;
-import com.company.island.Location;
 import com.company.plant.Plant;
-
-import java.util.Iterator;
 import java.util.List;
 
 public abstract class Herbivore extends Animal {
@@ -100,43 +96,53 @@ public abstract class Herbivore extends Animal {
     public void checkHealth(List<Herbivore> herbivores){
         if (this instanceof Boar){
             if (((Boar) this).getHunger() == 0){this.die(herbivores);
-            System.out.println(this.getClass().getName() + " is dead");}
+            //System.out.println(this.getClass().getName() + " is dead");
+            }
         }
         if (this instanceof Buffalo){
             if (((Buffalo) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Caterpillar){
             if (((Caterpillar) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Deer){
             if (((Deer) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Duck){
             if (((Duck) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Goat){
             if (((Goat) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Horse){
             if (((Horse) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Mouse){
             if (((Mouse) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Rabbit){
             if (((Rabbit) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
         if (this instanceof Sheep){
             if (((Sheep) this).getHunger() == 0){this.die(herbivores);
-                System.out.println(this.getClass().getName() + " is dead");}
+                //System.out.println(this.getClass().getName() + " is dead");
+                }
         }
     }
     public void hunger(){
