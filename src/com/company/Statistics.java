@@ -72,9 +72,28 @@ public class Statistics implements Runnable {
             if (location.getPredators().get(k) instanceof Wolf) wolf++;
         }
 
-        System.out.print("Total animal count on location : " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf));
-        System.out.print("  Herbivores: " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep));
-        System.out.println("  Predators: " + (anaconda + bear + eagle + fox + wolf));
+
+
+
+        System.out.print("Total animal count on location : " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf + " |"));
+        System.out.print(": \uD83D\uDC17Boar=" + boar);
+        System.out.print("| \uD83D\uDC03Buffalo=" + boar);
+        System.out.print("| \uD83D\uDC1BCaterpillar=" + boar);
+        System.out.print("| \uD83E\uDD8CDeer" + boar);
+        System.out.print("| \uD83E\uDD86Duck=" + boar);
+        System.out.print("| \uD83D\uDC10Goat=" + boar);
+        System.out.print("| \uD83D\uDC0EHorse=" + boar);
+        System.out.print("| \uD83D\uDC01Mouse=" + boar);
+        System.out.print("| \uD83D\uDC07Rabbit=" + boar);
+        System.out.print("| \uD83D\uDC11Sheep=" + boar);
+        System.out.print("| \uD83D\uDC0DAnaconda=" + boar);
+        System.out.print("| \uD83D\uDC3BBear=" + boar);
+        System.out.print("| \uD83E\uDD85Eagle=" + boar);
+        System.out.print("| \uD83E\uDD8AFox=" + boar);
+        System.out.print("| \uD83D\uDC3AWolf=" + boar);
+        System.out.println();
+        //System.out.print("  Herbivores: " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep));
+        //System.out.println("  Predators: " + (anaconda + bear + eagle + fox + wolf));
         return (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
     }
 }
