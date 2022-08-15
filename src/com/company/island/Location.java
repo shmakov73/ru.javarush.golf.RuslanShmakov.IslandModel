@@ -55,52 +55,52 @@ public class Location {
 
 
     public void addHerbivoresToList(){
-        for (int i = 0; i < randomCount(Boar.maxCount); i++) {
+        for (int i = 0; i < random(Boar.maxCount); i++) {
             herbivores.add(new Boar(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Buffalo.maxCount); i++) {
+        for (int i = 0; i < random(Buffalo.maxCount); i++) {
             herbivores.add(new Buffalo(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Caterpillar.maxCount); i++) {
+        for (int i = 0; i < random(Caterpillar.maxCount); i++) {
             herbivores.add(new Caterpillar(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Deer.maxCount); i++) {
+        for (int i = 0; i < random(Deer.maxCount); i++) {
             herbivores.add(new Deer(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Duck.maxCount); i++) {
+        for (int i = 0; i < random(Duck.maxCount); i++) {
             herbivores.add(new Duck(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Goat.maxCount); i++) {
+        for (int i = 0; i < random(Goat.maxCount); i++) {
             herbivores.add(new Goat(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Horse.maxCount); i++) {
+        for (int i = 0; i < random(Horse.maxCount); i++) {
             herbivores.add(new Horse(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Mouse.maxCount); i++) {
+        for (int i = 0; i < random(Mouse.maxCount); i++) {
             herbivores.add(new Mouse(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Rabbit.maxCount); i++) {
+        for (int i = 0; i < random(Rabbit.maxCount); i++) {
             herbivores.add(new Rabbit(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Sheep.maxCount); i++) {
+        for (int i = 0; i < random(Sheep.maxCount); i++) {
             herbivores.add(new Sheep(x, y, xLength, yLength));
         }
     }
 
     public void addPredatorsToList(){
-        for (int i = 0; i < randomCount(Anaconda.maxCount); i++) {
+        for (int i = 0; i < random(Anaconda.maxCount); i++) {
             predators.add(new Anaconda(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Bear.maxCount); i++) {
+        for (int i = 0; i < random(Bear.maxCount); i++) {
             predators.add(new Bear(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Eagle.maxCount); i++) {
+        for (int i = 0; i < random(Eagle.maxCount); i++) {
             predators.add(new Eagle(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Fox.maxCount); i++) {
+        for (int i = 0; i < random(Fox.maxCount); i++) {
             predators.add(new Fox(x, y, xLength, yLength));
         }
-        for (int i = 0; i < randomCount(Wolf.maxCount); i++) {
+        for (int i = 0; i < random(Wolf.maxCount); i++) {
             predators.add(new Wolf(x, y, xLength, yLength));
         }
     }
@@ -120,48 +120,7 @@ public class Location {
         }
     }
 
-//    public int calculate(Location location){
-//        int boar = 0;
-//        int buffalo = 0;
-//        int caterpillar = 0;
-//        int deer = 0;
-//        int duck = 0;
-//        int goat = 0;
-//        int horse = 0;
-//        int mouse = 0;
-//        int rabbit = 0;
-//        int sheep = 0;
-//        int anaconda = 0;
-//        int bear = 0;
-//        int eagle = 0;
-//        int fox = 0;
-//        int wolf = 0;
-//
-//        for (int k = 0; k < location.herbivores.size(); k++) {
-//            if (location.herbivores.get(k) instanceof Boar) boar++;
-//            if (location.herbivores.get(k) instanceof Buffalo) buffalo++;
-//            if (location.herbivores.get(k) instanceof Caterpillar) caterpillar++;
-//            if (location.herbivores.get(k) instanceof Deer) deer++;
-//            if (location.herbivores.get(k) instanceof Duck) duck++;
-//            if (location.herbivores.get(k) instanceof Goat) goat++;
-//            if (location.herbivores.get(k) instanceof Horse) horse++;
-//            if (location.herbivores.get(k) instanceof Mouse) mouse++;
-//            if (location.herbivores.get(k) instanceof Rabbit) rabbit++;
-//            if (location.herbivores.get(k) instanceof Sheep) sheep++;
-//        }
-//        for (int k = 0; k < location.predators.size(); k++) {
-//            if (location.predators.get(k) instanceof Anaconda) anaconda++;
-//            if (location.predators.get(k) instanceof Bear) bear++;
-//            if (location.predators.get(k) instanceof Eagle) eagle++;
-//            if (location.predators.get(k) instanceof Fox) fox++;
-//            if (location.predators.get(k) instanceof Wolf) wolf++;
-//        }
-//
-//        System.out.print("Total animal count on location : " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf));
-//        System.out.print("  Herbivores: " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep));
-//        System.out.println("  Predators: " + (anaconda + bear + eagle + fox + wolf));
-//        return (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
-//    }
+
     public void eating(){
         this.getLock().lock();
         try {
@@ -241,9 +200,13 @@ public class Location {
         }
     }
 
+    private int random(int animalCount){
+        return ThreadLocalRandom.current().nextInt(animalCount);
+    }
+
     private int randomCount (int animalCount){
         int returnNumber;
-        if (animalCount > 2) {
+        if (animalCount >= 2) {
             returnNumber = ThreadLocalRandom.current().nextInt(animalCount);
         }
         else returnNumber = 0;
