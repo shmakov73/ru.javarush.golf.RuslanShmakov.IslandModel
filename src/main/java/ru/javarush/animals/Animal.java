@@ -3,7 +3,7 @@ package ru.javarush.animals;
 import ru.javarush.service.Diet;
 import ru.javarush.animals.herbivore.*;
 import ru.javarush.animals.predator.*;
-import ru.javarush.plant.island.Location;
+import ru.javarush.island.Location;
 
 import java.util.Iterator;
 import java.util.List;

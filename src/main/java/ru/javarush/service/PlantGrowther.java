@@ -1,6 +1,6 @@
 package ru.javarush.service;
 
-import ru.javarush.plant.island.Location;
+import ru.javarush.island.Location;
 import ru.javarush.plant.Plant;
 
 import java.util.List;

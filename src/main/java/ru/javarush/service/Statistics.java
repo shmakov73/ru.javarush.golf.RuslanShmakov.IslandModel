@@ -2,7 +2,7 @@ package ru.javarush.service;
 
 import ru.javarush.animals.herbivore.*;
 import ru.javarush.animals.predator.*;
-import ru.javarush.plant.island.Location;
+import ru.javarush.island.Location;
 
 public class Statistics implements Runnable {
 

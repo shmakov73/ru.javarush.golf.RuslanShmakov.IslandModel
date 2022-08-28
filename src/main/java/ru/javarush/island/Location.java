@@ -1,4 +1,4 @@
-package ru.javarush.plant.island;
+package ru.javarush.island;
 
 import ru.javarush.animals.Animal;
 

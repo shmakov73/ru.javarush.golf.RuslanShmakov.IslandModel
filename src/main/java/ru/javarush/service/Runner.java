@@ -1,6 +1,6 @@
 package ru.javarush.service;
 
-import ru.javarush.plant.island.Island;
+import ru.javarush.island.Island;
 
 public class Runner {
     public static void main(String[] args) throws InterruptedException{

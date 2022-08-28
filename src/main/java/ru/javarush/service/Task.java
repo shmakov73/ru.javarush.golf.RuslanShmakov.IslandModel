@@ -1,7 +1,7 @@
 package ru.javarush.service;
 
-import ru.javarush.plant.island.Island;
-import ru.javarush.plant.island.Location;
+import ru.javarush.island.Island;
+import ru.javarush.island.Location;
 
 public class Task implements Runnable {
 

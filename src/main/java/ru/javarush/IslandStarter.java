@@ -1,7 +1,7 @@
 package ru.javarush;
 
-import ru.javarush.plant.island.Island;
-import ru.javarush.plant.island.Location;
+import ru.javarush.island.Island;
+import ru.javarush.island.Location;
 import ru.javarush.service.PlantGrowther;
 import ru.javarush.service.Statistics;
 import ru.javarush.service.Task;
