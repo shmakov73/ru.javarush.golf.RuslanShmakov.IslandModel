@@ -1,3 +1,5 @@
 /.idea
 /out
 /IslandModel.iml
+/target
+.gitignore
