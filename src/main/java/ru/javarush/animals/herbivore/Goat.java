@@ -7,13 +7,12 @@ import ru.javarush.service.Diet;
 
 public class Goat extends Herbivore{
 
-    public static final int maxCount = 140;
     public static final double weight = 60;
     public static final int movingSpeed = 3;
     public static final double canEat = 10;
 
-    public Goat(int xLocation, int yLocation, int xMax, int yMax) {
-        super(xLocation, yLocation, xMax, yMax, movingSpeed);
+    public Goat(int xLocation, int yLocation) {
+        super(xLocation, yLocation, movingSpeed);
     }
     private int hunger;
 

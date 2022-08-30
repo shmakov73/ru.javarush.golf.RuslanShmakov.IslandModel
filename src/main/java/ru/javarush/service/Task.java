@@ -3,14 +3,12 @@ package ru.javarush.service;
 import ru.javarush.island.Island;
 import ru.javarush.island.Location;
 
-public class Task implements Runnable {
-
-    private final Location location;
-    private final Island island;
+public record Task(Location location, Island island) implements Runnable {
 
     public Task(Location location, Island island) {
         this.location = location;
         this.island = island;
+
         location.addPlantsToList();
     }
 
@@ -19,12 +17,11 @@ public class Task implements Runnable {
         taskRunner();
     }
 
-    private void taskRunner(){
+    private void taskRunner() {
         if (location.moveAnimals(island.getLocations())) {
             location.eating();
             location.startReproduct();
         }
-        //island.print();
     }
 
-    }
+}

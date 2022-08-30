@@ -7,13 +7,12 @@ import ru.javarush.service.Diet;
 
 public class Buffalo extends Herbivore {
 
-    public static final int maxCount = 10;
     public static final double weight = 700;
     public static final int movingSpeed = 3;
     public static final double canEat = 100;
 
-    public Buffalo(int xLocation, int yLocation, int xMax, int yMax) {
-        super(xLocation, yLocation, xMax, yMax, movingSpeed);
+    public Buffalo(int xLocation, int yLocation) {
+        super(xLocation, yLocation, movingSpeed);
     }
 
     private int hunger;

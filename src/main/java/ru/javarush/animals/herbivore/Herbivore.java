@@ -7,8 +7,8 @@ import java.util.List;
 
 public abstract class Herbivore extends Animal {
 
-    public Herbivore(int xLocation, int yLocation, int xMax, int yMax, int movingSpeed) {
-        super(xLocation, yLocation, xMax, yMax, movingSpeed);
+    public Herbivore(int xLocation, int yLocation, int movingSpeed) {
+        super(xLocation, yLocation, movingSpeed);
     }
 
 

@@ -7,13 +7,12 @@ import ru.javarush.service.Diet;
 
 public class Mouse extends Herbivore{
 
-    public static final int maxCount = 500;
     public static final double weight = 0.05;
     public static final int movingSpeed = 1;
     public static final double canEat = 0.01;
 
-    public Mouse(int xLocation, int yLocation, int xMax, int yMax) {
-        super(xLocation, yLocation, xMax, yMax, movingSpeed);
+    public Mouse(int xLocation, int yLocation) {
+        super(xLocation, yLocation, movingSpeed);
     }
     private int hunger;
 

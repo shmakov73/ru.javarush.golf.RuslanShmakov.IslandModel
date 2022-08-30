@@ -8,9 +8,6 @@ import ru.javarush.service.Diet;
 
 public class Wolf extends Predator {
 
-    public static final int maxCount = 30;
-
-
     public static final double weight = 50;
     public static final int movingSpeed = 3;
     public static final double canEat = 8;
@@ -25,7 +22,7 @@ public class Wolf extends Predator {
         this.hunger = hunger;
     }
 
-    public Wolf(int xLocation, int yLocation, int xMax, int yMax) {
-        super(xLocation, yLocation, xMax, yMax, movingSpeed);
+    public Wolf(int xLocation, int yLocation) {
+        super(xLocation, yLocation, movingSpeed);
     }
 }

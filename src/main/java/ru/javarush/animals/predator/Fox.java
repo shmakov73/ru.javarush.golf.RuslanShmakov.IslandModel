@@ -7,9 +7,6 @@ import ru.javarush.service.Diet;
 
 public class Fox extends Predator {
 
-    public static final int maxCount = 30;
-
-
     public static final double weight = 8;
     public static final int movingSpeed = 2;
     public static final double canEat = 2;
@@ -24,7 +21,7 @@ public class Fox extends Predator {
         this.hunger = hunger;
     }
 
-    public Fox(int xLocation, int yLocation, int xMax, int yMax) {
-        super(xLocation, yLocation, xMax, yMax, movingSpeed);
+    public Fox(int xLocation, int yLocation) {
+        super(xLocation, yLocation, movingSpeed);
     }
 }

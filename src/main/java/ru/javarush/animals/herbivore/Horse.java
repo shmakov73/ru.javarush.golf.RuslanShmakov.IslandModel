@@ -7,13 +7,12 @@ import ru.javarush.service.Diet;
 
 public class Horse extends Herbivore{
 
-    public static final int maxCount = 20;
     public static final double weight = 400;
     public static final int movingSpeed = 4;
     public static final double canEat = 60;
 
-    public Horse(int xLocation, int yLocation, int xMax, int yMax) {
-        super(xLocation, yLocation, xMax, yMax, movingSpeed);
+    public Horse(int xLocation, int yLocation) {
+        super(xLocation, yLocation, movingSpeed);
     }
     private int hunger;
 

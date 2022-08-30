@@ -1,11 +1,13 @@
 package ru.javarush.island;
 
+import ru.javarush.service.Coordinate;
+import ru.javarush.service.Settings;
 import ru.javarush.service.Statistics;
 
 public class Island {
 
-    public static int islandLength = 4;
-    public static int islandWidth = 4;
+    public static int islandLength = Settings.islandLength;
+    public static int islandWidth = Settings.islandWidth;
 
     public static Location[][] locations = new Location[islandLength][islandWidth];
 
@@ -17,9 +19,7 @@ public class Island {
         for (int i = 0; i < locations.length; i++) {
             for (int j = 0; j < locations[i].length; j++) {
 
-                locations[i][j] = new Location();
-                locations[i][j].setX(i);
-                locations[i][j].setY(j);
+                locations[i][j] = new Location(new Coordinate(i, j));
                 locations[i][j].addHerbivoresToList();
                 locations[i][j].addPredatorsToList();
                 locations[i][j].addPlantsToList();

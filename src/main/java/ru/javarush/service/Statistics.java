@@ -75,24 +75,23 @@ public class Statistics implements Runnable {
 
 
         System.out.print("Total animal count on location : " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf + " |"));
-        System.out.print(": \uD83D\uDC17Boar=" + boar);
-        System.out.print("| \uD83D\uDC03Buffalo=" + buffalo);
-        System.out.print("| \uD83D\uDC1BCaterpillar=" + caterpillar);
-        System.out.print("| \uD83E\uDD8CDeer" + deer);
-        System.out.print("| \uD83E\uDD86Duck=" + duck);
-        System.out.print("| \uD83D\uDC10Goat=" + goat);
-        System.out.print("| \uD83D\uDC0EHorse=" + horse);
-        System.out.print("| \uD83D\uDC01Mouse=" + mouse);
-        System.out.print("| \uD83D\uDC07Rabbit=" + rabbit);
-        System.out.print("| \uD83D\uDC11Sheep=" + sheep);
-        System.out.print("| \uD83D\uDC0DAnaconda=" + anaconda);
-        System.out.print("| \uD83D\uDC3BBear=" + bear);
-        System.out.print("| \uD83E\uDD85Eagle=" + eagle);
-        System.out.print("| \uD83E\uDD8AFox=" + fox);
-        System.out.print("| \uD83D\uDC3AWolf=" + wolf);
+        System.out.print(": 🐗 Boar=" + boar);
+        System.out.print("| \uD83D\uDC03 Buffalo=" + buffalo);
+        System.out.print("| \uD83D\uDC1B Caterpillar=" + caterpillar);
+        System.out.print("| \uD83E\uDD8C Deer" + deer);
+        System.out.print("| \uD83E\uDD86 Duck=" + duck);
+        System.out.print("| \uD83D\uDC10 Goat=" + goat);
+        System.out.print("| \uD83D\uDC0E Horse=" + horse);
+        System.out.print("| \uD83D\uDC01 Mouse=" + mouse);
+        System.out.print("| \uD83D\uDC07 Rabbit=" + rabbit);
+        System.out.print("| \uD83D\uDC11 Sheep=" + sheep);
+        System.out.print("| \uD83D\uDC0D Anaconda=" + anaconda);
+        System.out.print("| \uD83D\uDC3B Bear=" + bear);
+        System.out.print("| \uD83E\uDD85 Eagle=" + eagle);
+        System.out.print("| \uD83E\uDD8A Fox=" + fox);
+        System.out.print("| \uD83D\uDC3A Wolf=" + wolf);
         System.out.println();
-        //System.out.print("  Herbivores: " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep));
-        //System.out.println("  Predators: " + (anaconda + bear + eagle + fox + wolf));
+
         return (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf);
     }
 }
