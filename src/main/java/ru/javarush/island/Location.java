@@ -9,7 +9,6 @@ import ru.javarush.service.Coordinate;
 import ru.javarush.service.Settings;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -119,68 +118,71 @@ public class Location {
     public void eating(){
         this.getLock().lock();
         try {
-            Iterator<Predator> iterator = predators.iterator();
-            Predator nextPredator = iterator.next();
-            nextPredator.eat(nextPredator, herbivores);
-            nextPredator.checkHealth(predators);
 
-            Iterator<Herbivore> iterator1 = herbivores.iterator();
-            Herbivore nextHerbivore = iterator1.next();
-            nextHerbivore.eat(herbivores);
-            nextHerbivore.eatPlant(plants);
-            nextHerbivore.checkHealth(herbivores);
-        }
-        finally {
-            this.getLock().unlock();
-        }
+            List<Predator> predatorsList = new CopyOnWriteArrayList<>(predators);
+            List<Herbivore> herbivoresList = new CopyOnWriteArrayList<>(herbivores);
+
+            for (Predator predator : predatorsList) {
+                predator.eat(predator, herbivores);
+                predator.checkHealth(predators);
+            }
+            for (Herbivore herbivore : herbivoresList) {
+                herbivore.eat(herbivores);
+                herbivore.eatPlant(plants);
+                herbivore.checkHealth(herbivores);
+            }
+
+            } finally {
+                this.getLock().unlock();
+            }
     }
 
     public void startReproduct(){
         this.getLock().lock();
         try {
-            for (int i = 0; i < randomCount(Settings.boarMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.boarMaxCount/20); i++) {
                 herbivores.add(new Boar(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.buffaloMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.buffaloMaxCount/20); i++) {
                 herbivores.add(new Buffalo(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.caterpillarMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.caterpillarMaxCount/200); i++) {
                 herbivores.add(new Caterpillar(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.deerMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.deerMaxCount/20); i++) {
                 herbivores.add(new Deer(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.duckMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.duckMaxCount/20); i++) {
                 herbivores.add(new Duck(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.goatMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.goatMaxCount/20); i++) {
                 herbivores.add(new Goat(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.horseMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.horseMaxCount/20); i++) {
                 herbivores.add(new Horse(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.mouseMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.mouseMaxCount/20); i++) {
                 herbivores.add(new Mouse(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.rabbitMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.rabbitMaxCount/20); i++) {
                 herbivores.add(new Rabbit(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.sheepMaxCount/100); i++) {
+            for (int i = 0; i < randomCount(Settings.sheepMaxCount/20); i++) {
                 herbivores.add(new Sheep(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.anacondaMaxCount/4); i++) {
+            for (int i = 0; i < randomCount(Settings.anacondaMaxCount/20); i++) {
                 predators.add(new Anaconda(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.bearMaxCount/4); i++) {
+            for (int i = 0; i < randomCount(Settings.bearMaxCount/20); i++) {
                 predators.add(new Bear(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.eagleMaxCount/4); i++) {
+            for (int i = 0; i < randomCount(Settings.eagleMaxCount/20); i++) {
                 predators.add(new Eagle(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.foxMaxCount/4); i++) {
+            for (int i = 0; i < randomCount(Settings.foxMaxCount/20); i++) {
                 predators.add(new Fox(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.wolfMaxCount/4); i++) {
+            for (int i = 0; i < randomCount(Settings.wolfMaxCount/20); i++) {
                 predators.add(new Wolf(x, y));
             }
             for (Herbivore herbivore : herbivores) {

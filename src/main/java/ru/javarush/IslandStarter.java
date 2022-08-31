@@ -17,7 +17,7 @@ public class IslandStarter{
         island.initialize();
         island.print();
 
-        ScheduledExecutorService executorTasks = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService executorTasks = Executors.newScheduledThreadPool(8);
         ScheduledExecutorService executorPlantGrowth = Executors.newScheduledThreadPool(1);
         ScheduledExecutorService executorStatistics = Executors.newScheduledThreadPool(1);
 

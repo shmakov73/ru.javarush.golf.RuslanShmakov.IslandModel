@@ -1,8 +1,8 @@
 package ru.javarush.service;
 
 public class Settings {
-    public static int islandLength = 5;
-    public static int islandWidth = 5;
+    public static int islandLength = 20;
+    public static int islandWidth = 100;
 
     public static int boarMaxCount = 50;
     public static int buffaloMaxCount = 10;

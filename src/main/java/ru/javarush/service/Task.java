@@ -23,5 +23,4 @@ public record Task(Location location, Island island) implements Runnable {
             location.startReproduct();
         }
     }
-
 }
