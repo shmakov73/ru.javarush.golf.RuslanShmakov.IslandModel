@@ -18,9 +18,8 @@ public record Task(Location location, Island island) implements Runnable {
     }
 
     private void taskRunner() {
-        if (location.moveAnimals(island.getLocations())) {
+            location.moveAnimals(island);
             location.eating();
             location.startReproduct();
-        }
     }
 }

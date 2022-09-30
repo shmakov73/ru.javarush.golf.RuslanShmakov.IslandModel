@@ -140,49 +140,49 @@ public class Location {
     public void startReproduct(){
         this.getLock().lock();
         try {
-            for (int i = 0; i < randomCount(Settings.boarMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.boarMaxCount/Settings.boarBirthRate); i++) {
                 herbivores.add(new Boar(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.buffaloMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.buffaloMaxCount/Settings.buffaloBirthRate); i++) {
                 herbivores.add(new Buffalo(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.caterpillarMaxCount/200); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.caterpillarMaxCount/Settings.caterpillarBirthRate); i++) {
                 herbivores.add(new Caterpillar(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.deerMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.deerMaxCount/Settings.deerBirthRate); i++) {
                 herbivores.add(new Deer(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.duckMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.duckMaxCount/Settings.duckBirthRate); i++) {
                 herbivores.add(new Duck(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.goatMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.goatMaxCount/Settings.goatBirthRate); i++) {
                 herbivores.add(new Goat(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.horseMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.horseMaxCount/Settings.horseBirthRate); i++) {
                 herbivores.add(new Horse(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.mouseMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.mouseMaxCount/Settings.mouseBirthRate); i++) {
                 herbivores.add(new Mouse(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.rabbitMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.rabbitMaxCount/Settings.rabbitBirthRate); i++) {
                 herbivores.add(new Rabbit(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.sheepMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.sheepMaxCount/Settings.sheepBirthRate); i++) {
                 herbivores.add(new Sheep(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.anacondaMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.anacondaMaxCount/Settings.anacondaBirthRate); i++) {
                 predators.add(new Anaconda(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.bearMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.bearMaxCount/Settings.bearBirthRate); i++) {
                 predators.add(new Bear(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.eagleMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.eagleMaxCount/Settings.eagleBirthRate); i++) {
                 predators.add(new Eagle(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.foxMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.foxMaxCount/Settings.foxBirthRate); i++) {
                 predators.add(new Fox(x, y));
             }
-            for (int i = 0; i < randomCount(Settings.wolfMaxCount/20); i++) {
+            for (int i = 0; i < randomReproductCount(Settings.wolfMaxCount/Settings.wolfBirthRate); i++) {
                 predators.add(new Wolf(x, y));
             }
             for (Herbivore herbivore : herbivores) {
@@ -201,17 +201,18 @@ public class Location {
         return ThreadLocalRandom.current().nextInt(animalCount);
     }
 
-    private int randomCount (int animalCount){
+    private int randomReproductCount(int animalCount){
         int returnNumber;
         if (animalCount >= 2) {
-            returnNumber = ThreadLocalRandom.current().nextInt(animalCount);
+            returnNumber = ThreadLocalRandom.current().nextInt(animalCount/2);
         }
         else returnNumber = 0;
         return returnNumber;
     }
 
-    public boolean moveAnimals(Location[][] locations){
-        this.getLock().lock();
+    public void moveAnimals(Island island){
+        Location[][] locations = island.getLocations();
+        island.getLock().lock();
         try {
             List<Predator> predatorsList = new CopyOnWriteArrayList<>(predators);
             List<Herbivore> herbivoresList = new CopyOnWriteArrayList<>(herbivores);
@@ -224,8 +225,7 @@ public class Location {
             }
         }
         finally {
-            this.getLock().unlock();
+            island.getLock().unlock();
         }
-        return true;
     }
 }

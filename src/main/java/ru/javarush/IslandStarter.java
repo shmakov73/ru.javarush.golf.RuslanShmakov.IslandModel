@@ -28,7 +28,7 @@ public class IslandStarter{
                 executorPlantGrowth.scheduleWithFixedDelay(new PlantGrowther(location), 2, 3, TimeUnit.SECONDS);
             }
         }
-        executorStatistics.scheduleWithFixedDelay(new Statistics(island.getLocations()), 1, 1, TimeUnit.SECONDS);
+        executorStatistics.scheduleWithFixedDelay(new Statistics(island.getLocations()), 1500, 1000, TimeUnit.MILLISECONDS);
 
 
     }

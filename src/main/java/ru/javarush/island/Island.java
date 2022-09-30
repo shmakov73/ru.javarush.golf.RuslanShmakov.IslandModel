@@ -4,12 +4,19 @@ import ru.javarush.service.Coordinate;
 import ru.javarush.service.Settings;
 import ru.javarush.service.Statistics;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Island {
 
     public static int islandLength = Settings.islandLength;
     public static int islandWidth = Settings.islandWidth;
 
     public static Location[][] locations = new Location[islandLength][islandWidth];
+    private final Lock lock = new ReentrantLock(true);
+    public Lock getLock() {
+        return lock;
+    }
 
     public Location[][] getLocations() {
         return locations;
@@ -43,31 +50,4 @@ public class Island {
         }
         System.out.println("Total animal count: " + total);
     }
-
-        public void migrate() {
-            for (Location[] location : locations) {
-                for (Location value : location) {
-                    value.moveAnimals(locations);
-                }
-            }
-        }
-
-        public void hunt() {
-            for (Location[] location : locations) {
-                for (Location value : location) {
-                    value.eating();
-                }
-            }
-        }
-
-        public void reproduct(){
-            for (Location[] location : locations) {
-                for (Location value : location) {
-                    value.startReproduct();
-                }
-
-            }
-        }
-
-
     }
