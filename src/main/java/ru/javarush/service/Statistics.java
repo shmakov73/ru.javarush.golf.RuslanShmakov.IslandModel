@@ -1,78 +1,57 @@
 package ru.javarush.service;
 
+import ru.javarush.IslandStarter;
 import ru.javarush.animals.herbivore.*;
 import ru.javarush.animals.predator.*;
+import ru.javarush.island.Island;
 import ru.javarush.island.Location;
 
 public class Statistics implements Runnable {
 
     Location[][] locations;
+    Island island;
 
-    public Statistics(Location[][] locations) {
-        this.locations = locations;
+
+    public Statistics(Island island) {
+        this.island = island;
     }
 
     @Override
     public void run() {
+        locations = island.getLocations();
 
         int total = 0;
 
         for (Location[] location : locations) {
             for (Location value : location) {
-                value.getLock().lock();
-                try {
-                    total = total + calculate(value);
-                } finally {
-                    value.getLock().unlock();
-                }
-
+                total = total + calculate(value);
             }
         }
+
+        if (total > 0){
         System.out.println("Total animal count: " + total);
         System.out.println("***********************************************************************************");
         System.out.println();
-
+        }
+        else IslandStarter.stop();
     }
 
     public int calculate(Location location){
-        int boar = 0;
-        int buffalo = 0;
-        int caterpillar = 0;
-        int deer = 0;
-        int duck = 0;
-        int goat = 0;
-        int horse = 0;
-        int mouse = 0;
-        int rabbit = 0;
-        int sheep = 0;
-        int anaconda = 0;
-        int bear = 0;
-        int eagle = 0;
-        int fox = 0;
-        int wolf = 0;
-
-        for (int k = 0; k < location.getHerbivores().size(); k++) {
-            if (location.getHerbivores().get(k) instanceof Boar) boar++;
-            if (location.getHerbivores().get(k) instanceof Buffalo) buffalo++;
-            if (location.getHerbivores().get(k) instanceof Caterpillar) caterpillar++;
-            if (location.getHerbivores().get(k) instanceof Deer) deer++;
-            if (location.getHerbivores().get(k) instanceof Duck) duck++;
-            if (location.getHerbivores().get(k) instanceof Goat) goat++;
-            if (location.getHerbivores().get(k) instanceof Horse) horse++;
-            if (location.getHerbivores().get(k) instanceof Mouse) mouse++;
-            if (location.getHerbivores().get(k) instanceof Rabbit) rabbit++;
-            if (location.getHerbivores().get(k) instanceof Sheep) sheep++;
-        }
-        for (int k = 0; k < location.getPredators().size(); k++) {
-            if (location.getPredators().get(k) instanceof Anaconda) anaconda++;
-            if (location.getPredators().get(k) instanceof Bear) bear++;
-            if (location.getPredators().get(k) instanceof Eagle) eagle++;
-            if (location.getPredators().get(k) instanceof Fox) fox++;
-            if (location.getPredators().get(k) instanceof Wolf) wolf++;
-        }
-
-
-
+        int boar = location.getHerbivores().stream().filter(animal -> animal instanceof Boar).toList().size();
+        int buffalo = location.getHerbivores().stream().filter(animal -> animal instanceof Buffalo).toList().size();
+        int caterpillar = location.getHerbivores().stream().filter(animal -> animal instanceof Caterpillar).toList().size();
+        int deer = location.getHerbivores().stream().filter(animal -> animal instanceof Deer).toList().size();
+        int duck = location.getHerbivores().stream().filter(animal -> animal instanceof Duck).toList().size();
+        int goat = location.getHerbivores().stream().filter(animal -> animal instanceof Goat).toList().size();
+        int horse = location.getHerbivores().stream().filter(animal -> animal instanceof Horse).toList().size();
+        int mouse = location.getHerbivores().stream().filter(animal -> animal instanceof Mouse).toList().size();
+        int rabbit = location.getHerbivores().stream().filter(animal -> animal instanceof Rabbit).toList().size();
+        int sheep = location.getHerbivores().stream().filter(animal -> animal instanceof Sheep).toList().size();
+        int anaconda = location.getPredators().stream().filter(animal -> animal instanceof Anaconda).toList().size();
+        int bear = location.getPredators().stream().filter(animal -> animal instanceof Bear).toList().size();
+        int eagle = location.getPredators().stream().filter(animal -> animal instanceof Eagle).toList().size();
+        int fox = location.getPredators().stream().filter(animal -> animal instanceof Fox).toList().size();
+        int wolf = location.getPredators().stream().filter(animal -> animal instanceof Wolf).toList().size();
 
         System.out.print("Total animal count on location : " + (boar + buffalo + caterpillar + deer + duck + goat + horse + mouse + rabbit + sheep + anaconda + bear + eagle + fox + wolf + " |"));
         System.out.print(": 🐗 Boar=" + boar);

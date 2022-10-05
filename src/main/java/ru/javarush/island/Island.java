@@ -1,7 +1,7 @@
 package ru.javarush.island;
 
 import ru.javarush.service.Coordinate;
-import ru.javarush.service.Settings;
+import ru.javarush.Settings;
 import ru.javarush.service.Statistics;
 
 import java.util.concurrent.locks.Lock;
@@ -36,7 +36,7 @@ public class Island {
 
     public void print() {
         int total = 0;
-        Statistics statistics = new Statistics(locations);
+        Statistics statistics = new Statistics(this);
         for (Location[] location : locations) {
             for (Location value : location) {
                 value.getLock().lock();
@@ -50,4 +50,4 @@ public class Island {
         }
         System.out.println("Total animal count: " + total);
     }
-    }
+}

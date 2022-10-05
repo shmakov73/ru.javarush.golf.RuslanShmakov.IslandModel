@@ -14,13 +14,13 @@ public class Horse extends Herbivore{
     public Horse(int xLocation, int yLocation) {
         super(xLocation, yLocation, movingSpeed);
     }
-    private int hunger;
+    private double hunger = canEat;
 
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
-    public void setHunger(int hunger) {
+    public void setHunger(double hunger) {
         this.hunger = hunger;
     }
 }

@@ -1,10 +1,10 @@
-package ru.javarush.service;
+package ru.javarush;
 
 public class Settings {
 
     // island dimensions
     public static int islandLength = 5;
-    public static int islandWidth = 10;
+    public static int islandWidth = 5;
 
 
     // maximal animal count
@@ -30,10 +30,10 @@ public class Settings {
     public static int buffaloBirthRate = 30;
     public static int caterpillarBirthRate = 100;
     public static int deerBirthRate = 10;
-    public static int duckBirthRate = 40;
-    public static int goatBirthRate = 30;
+    public static int duckBirthRate = 100;
+    public static int goatBirthRate = 100;
     public static int horseBirthRate = 10;
-    public static int mouseBirthRate = 50;
+    public static int mouseBirthRate = 100;
     public static int rabbitBirthRate = 40;
     public static int sheepBirthRate = 40;
     public static int anacondaBirthRate = 30;
@@ -41,4 +41,9 @@ public class Settings {
     public static int eagleBirthRate = 20;
     public static int foxBirthRate = 30;
     public static int wolfBirthRate = 30;
+
+    //Hunger factor: the higher the number, the longer the animal lives
+
+    public static int predatorHungerFactor = 6;
+    public static int herbivoreHungerFactor = 4;
 }

@@ -1,13 +1,14 @@
 package ru.javarush.animals;
 
-import ru.javarush.service.Diet;
+
 import ru.javarush.animals.herbivore.*;
 import ru.javarush.animals.predator.*;
 import ru.javarush.island.Location;
-import ru.javarush.service.Settings;
+import ru.javarush.Settings;
 
-import java.util.Iterator;
+
 import java.util.List;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Animal {
@@ -96,8 +97,13 @@ public class Animal {
         return returnCoordinates;
     }
 
-    public void die(List<? extends Animal> animals){
-        animals.remove(this);
+    public void die(List<? extends Animal> animals, Location location){
+        location.getLock().lock();
+        try {
+            animals.remove(this);
+        }finally {
+            location.getLock().unlock();
+        }
     }
 
     public boolean eatOrNot(int chance){
@@ -108,24 +114,7 @@ public class Animal {
     public int random(int count){
         return ThreadLocalRandom.current().nextInt(count);
     }
-
-    public void eat(List<? extends Animal> victims){
-
-            Diet annotation = this.getClass().getAnnotation(Diet.class);
-            Iterator<? extends Animal> iterator =  victims.iterator();
-            Animal nextVictim = iterator.next();
-
-            if (this.eatOrNot(annotation.eatBoar())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatBuffalo())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatCaterpillar())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatDeer())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatDuck())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatGoat())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatHorse())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatMouse())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatRabbit())) nextVictim.die(victims);
-            if (this.eatOrNot(annotation.eatSheep())) nextVictim.die(victims);
         }
 
-    }
+
 

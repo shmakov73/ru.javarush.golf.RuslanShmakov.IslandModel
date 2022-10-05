@@ -15,11 +15,12 @@ public record Task(Location location, Island island) implements Runnable {
     @Override
     public void run() {
         taskRunner();
+
     }
 
     private void taskRunner() {
-            location.moveAnimals(island);
-            location.eating();
-            location.startReproduct();
+        location.moveAnimals(island);
+        location.eating();
+        location.startReproduct();
     }
 }

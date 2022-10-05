@@ -11,13 +11,13 @@ public class Fox extends Predator {
     public static final int movingSpeed = 2;
     public static final double canEat = 2;
 
-    private int hunger;
+    private double hunger = canEat;
 
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
-    public void setHunger(int hunger) {
+    public void setHunger(double hunger) {
         this.hunger = hunger;
     }
 

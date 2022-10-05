@@ -3,12 +3,11 @@ package ru.javarush.service;
 import ru.javarush.island.Location;
 import ru.javarush.plant.Plant;
 
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PlantGrowther implements Runnable {
 
-    public static int maxCount = 10000;
+    public static int maxCount = Plant.maxCount;
     private final Location location;
 
     public PlantGrowther(Location location) {
@@ -21,7 +20,6 @@ public class PlantGrowther implements Runnable {
     }
 
     public void growPlant(){
-        List<Plant> plants = location.getPlants();
         for (int i = 0; i < random(maxCount); i++) {
             location.getPlants().add(new Plant(1));
         }

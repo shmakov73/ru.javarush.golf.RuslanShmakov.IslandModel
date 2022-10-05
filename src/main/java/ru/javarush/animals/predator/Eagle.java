@@ -12,13 +12,13 @@ public class Eagle extends Predator {
     public static final double canEat = 1;
 
 
-    private int hunger;
+    private double hunger = canEat;
 
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
-    public void setHunger(int hunger) {
+    public void setHunger(double hunger) {
         this.hunger = hunger;
     }
 

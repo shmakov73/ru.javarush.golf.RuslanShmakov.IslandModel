@@ -12,13 +12,13 @@ public class Wolf extends Predator {
     public static final int movingSpeed = 3;
     public static final double canEat = 8;
 
-    private int hunger;
+    private double hunger = canEat;
 
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
-    public void setHunger(int hunger) {
+    public void setHunger(double hunger) {
         this.hunger = hunger;
     }
 

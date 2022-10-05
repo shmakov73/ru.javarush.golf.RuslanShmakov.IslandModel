@@ -7,20 +7,20 @@ import ru.javarush.service.Diet;
 
 public class Caterpillar extends Herbivore{
 
-    public static final double weight = 400;
-    public static final int movingSpeed = 2;
-    public static final double canEat = 50;
+    public static final double weight = 0.01;
+    public static final int movingSpeed = 0;
+    public static final double canEat = 0.01;
 
     public Caterpillar(int xLocation, int yLocation) {
         super(xLocation, yLocation, movingSpeed);
     }
-    private int hunger;
+    private double hunger = canEat;
 
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
-    public void setHunger(int hunger) {
+    public void setHunger(double hunger) {
         this.hunger = hunger;
     }
 }

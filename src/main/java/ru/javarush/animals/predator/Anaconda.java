@@ -11,13 +11,13 @@ public class Anaconda extends Predator {
     public static final double canEat = 3;
 
 
-    private int hunger;
+    private double hunger = canEat;
 
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
-    public void setHunger(int hunger) {
+    public void setHunger(double hunger) {
         this.hunger = hunger;
     }
 

@@ -2,7 +2,7 @@ package ru.javarush.plant;
 
 public class Plant {
 
-    private int weight;
+    private final int weight;
     public static int maxCount = 500;
 
     public Plant(int weight) {
